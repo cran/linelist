@@ -2,7 +2,7 @@
 title: "An introduction to linelist"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{linelist_introduction}
+  %\VignetteIndexEntry{An introduction to linelist}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -60,9 +60,9 @@ symptom onset, age, gender, disease outcome)
    
 3. **secured methods**: generic functions which could lead to the loss of tagged
    variables have dedicated methods for *linelist* objects with adapted
-   behaviours, either updating tags as needed (*e.g.* `rename`, `names() <-
+   behaviours, either updating tags as needed (*e.g.* `rename()`, `names() <-
    ...`) or issuing warnings/errors when tagged variables are lost (*e.g.*
-   `select`, `x[]`, `x[[]]`)
+   `select()`, `x[]`, `x[[]]`)
 
 
 ## Should I use *linelist*?
@@ -111,7 +111,7 @@ If you prefer using the latest features and bug fixes, you can alternatively
 install the development version of *linelist* from [GitHub](https://github.com/)
 using the following commands:
 
-```{r, eval=FALSE}
+```r
 if (!require(remotes)) {
   install.packages("remotes")
 }
@@ -183,22 +183,12 @@ prevent the loss of tagged variables.
 
 * `get_lost_tags_actions()`: to check the current behaviour for lost tagged
   variables
-  
-* `rename`: adapted from `dplyr::rename`, to rename columns of a `linelist`;
+
+* `names(x) <- `: the 'base R' approach to renaming columns of a `linelist`;
   will rename tags as needed to match the new column names
-  
-* `names(x) <- `: same as `rename`, but using the 'base R' approach to renaming
-  columns
-  
-* `select()`: adapted from `dplyr::select`, for subsetting columns; an
-  additional argument can be used to subset tagged variables as well; will
+
+* `x[]` and `x[[]]`: for subsetting columns using 'base R' syntax; will
   behave according to `get_lost_tags_actions()` if tagged variables are lost
-  
-* `x[]` and `x[[]]`: same as `dplyr::select` but using 'base R' syntax; will
-  behave according to `get_lost_tags_actions()` if tagged variables are lost
-
-
-
 
 # Worked example
 
@@ -207,14 +197,11 @@ prevent the loss of tagged variables.
 In this example, we use the case line list of the Hagelloch 1861 measles
 outbreak, distributed by the *outbreaks* pacakge as `measles_hagelloch_1861` .
 
-```{r }
-
-# load libraries
-library(outbreaks)
+```{r}
+data(measles_hagelloch_1861, package = "outbreaks")
 
 # overview of the data
 head(measles_hagelloch_1861)
-
 ```
 
 ## Creating a *linelist* object
@@ -232,7 +219,7 @@ information:
 
 ```{r }
 
-library(tibble) # data.frame but with nice printing 
+library(tibble) # data.frame but with nice printing
 library(dplyr) # for data handling
 library(magrittr) # for the %>% operator
 library(linelist) # this package!
@@ -263,14 +250,16 @@ Tags can be added / removed / changed using `set_tags()`.
 
 Let us assume we also want to record the outcome: it is currently missing, but
 can be built from dates of deaths (missing date = survived). This can be done by
-using `mutate` on `x` to create the new variable (remember `x` is not only a
+using `mutate()` on `x` to create the new variable (remember `x` is not only a
 `linelist`, but also a regular `tibble` and this compatible with `dplyr` verbs),
 and setting up a new tag using `set_tags`:
 
 ```{r }
 
 x <- x %>%
-  mutate(inferred_outcome = if_else(is.na(date_of_death), "survided", "died")) %>%
+  mutate(
+    inferred_outcome = if_else(is.na(date_of_death), "survived", "died")
+  ) %>%
   set_tags(outcome = "inferred_outcome")
 x
 
@@ -327,19 +316,17 @@ x %>%
 
 ```
 
-Here, the above command gave a meaningful warning, in which `select` removes
-some of the variables that were tagged. This is because *linelist* implements a
-specific `select` method for `linelist` objects - see
-[`?select.linelist`](https://epiverse-trace.github.io/linelist/reference/select.linelist.html). In
-fact, looking at the documentation, we can see that `select()` can be used to
-select variables both from the dataset and from the tags, using the `tags = ...`
-argument. For instance, to retain the first 2 variables, and the `gender` tag:
+Here, the above command gave a meaningful warning, in which `select()` removes
+some of the variables that were tagged.
+
+We can also use the `has_tag()` select helper to select columns via their tag.
+For example, to retain the first 2 variables, and the `gender` tag:
 
 ```{r }
 
 # hybrid selection
 x %>%
-  select(1:2, tags = "gender")
+  select(1:2, has_tag("gender"))
 
 ```
 
@@ -350,21 +337,22 @@ issue an error (for stronger pipelines for instance):
 ```{r error = TRUE}
 # hybrid selection
 x %>%
-  select(1:2, tags = "gender")
+  select(1:2, has_tag("gender"))
 
 # hybrid selection - no warning
+lost_tags_action("none")
+
 x %>%
-  lost_tags_action("none") %>%
-  select(1:2, tags = "gender")
+  select(1:2, has_tag("gender"))
 
 # hybrid selection - error due to lost tags
-x %>%
-  lost_tags_action("error") %>%
-  select(1:2, tags = "gender")
+lost_tags_action("error")
 
-# note that `lost_tags_action` sets the behavior for any later operation, so we 
+x %>%
+  select(1:2, has_tag("gender"))
+
+# note that `lost_tags_action` sets the behavior for any later operation, so we
 # need to reset the default
 get_lost_tags_action() # check current behaviour
 lost_tags_action() # reset default
-
 ```

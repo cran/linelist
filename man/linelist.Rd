@@ -16,17 +16,16 @@ reliable.
 \section{Main functions}{
 
 \itemize{
-\item \code{\link[=make_linelist]{make_linelist()}}: to create \code{linelist} objects from a
-\code{data.frame} or a \code{tibble}, with the possibility to tag key epi variables
+\item \code{\link[=make_linelist]{make_linelist()}}: to create \code{linelist} objects from a \code{data.frame} or a
+\code{tibble}, with the possibility to tag key epi variables
 \item \code{\link[=set_tags]{set_tags()}}: to change or add tagged variables in a \code{linelist}
 \item \code{\link[=tags]{tags()}}: to get the list of tags of a \code{linelist}
 \item \code{\link[=tags_df]{tags_df()}}: to get a \code{data.frame} of all tagged variables
-\item \code{\link[=select_tags]{select_tags()}}: like \code{\link[dplyr:select]{dplyr::select()}}, but for tagged variables
-\item \code{\link[=lost_tags_action]{lost_tags_action()}}: to change the behaviour of actions
-where tagged variables are lost (e.g. removing columns storing tagged
-variables) to issue warnings, errors, or do nothing
-\item \code{\link[=get_lost_tags_action]{get_lost_tags_action()}}: to check the current
-behaviour of actions where tagged variables are lost
+\item \code{\link[=lost_tags_action]{lost_tags_action()}}: to change the behaviour of actions where tagged
+variables are lost (e.g. removing columns storing tagged variables) to
+issue warnings, errors, or do nothing
+\item \code{\link[=get_lost_tags_action]{get_lost_tags_action()}}: to check the current behaviour of actions where
+tagged variables are lost
 }
 }
 
@@ -38,11 +37,12 @@ Specific methods commonly used to handle \code{data.frame} are provided for
 alter or lose tagged variables (and may thus break downstream data
 pipelines).
 \itemize{
-\item \verb{names() <-} and \code{rename} (see \code{\link[=rename.linelist]{rename.linelist()}}): will rename tags as needed
-\item \verb{x[...] <-} and \verb{x[[...]] <-} (see \link{sub_linelist}): will adopt
-the desire behaviour when tagged variables are lost
-\item \code{print()}: prints info about the \code{linelist} in addition to the \code{data.frame}
-or \code{tibble}
+\item \verb{names() <-} and \code{rename} (see \code{\link[dplyr:rename]{dplyr::rename()}}): will rename tags as
+needed
+\item \verb{x[...] <-} and \verb{x[[...]] <-} (see \link{sub_linelist}): will adopt the desire
+behaviour when tagged variables are lost
+\item \code{print()}: prints info about the \code{linelist} in addition to the
+\code{data.frame} or \code{tibble}
 }
 }
 
@@ -56,10 +56,11 @@ if (require(outbreaks)) {
 
   ## create linelist
   x <- make_linelist(measles_hagelloch_1861[1:50, ],
-                     id = "case_ID",
-                     date_onset = "date_of_prodrome",
-                     age = "age",
-                     gender = "gender")
+    id = "case_ID",
+    date_onset = "date_of_prodrome",
+    age = "age",
+    gender = "gender"
+  )
   x
 
   ## check tagged variables
@@ -94,11 +95,13 @@ if (require(outbreaks)) {
 
   if (require(dplyr) && require(magrittr)) {
     x <- measles_hagelloch_1861 \%>\%
-      tibble() \%>\% 
-      make_linelist(id = "case_ID",
-                    date_onset = "date_of_prodrome",
-                    age = "age",
-                    gender = "gender") \%>\%
+      tibble() \%>\%
+      make_linelist(
+        id = "case_ID",
+        date_onset = "date_of_prodrome",
+        age = "age",
+        gender = "gender"
+      ) \%>\%
       mutate(result = if_else(is.na(date_of_death), "survived", "died")) \%>\%
       set_tags(outcome = "result") \%>\%
       rename(identifier = case_ID)
@@ -110,15 +113,8 @@ if (require(outbreaks)) {
 
     x \%>\%
       select(starts_with("date"))
-
-    ## disable warnings on the fly
-    x \%>\%
-      lost_tags_action("none") \%>\%
-      select(starts_with("date"))
-    
   }
 }
-
 
 }
 \author{

@@ -1,4 +1,4 @@
-## ---- include = FALSE---------------------------------------------------------
+## ----include = FALSE----------------------------------------------------------
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
@@ -7,14 +7,8 @@ knitr::opts_chunk$set(
 ## ----setup--------------------------------------------------------------------
 library(linelist)
 
-## ---- eval=FALSE--------------------------------------------------------------
+## ----eval=FALSE---------------------------------------------------------------
 #  install.packages("linelist", build_vignettes = TRUE)
-
-## ---- eval=FALSE--------------------------------------------------------------
-#  if (!require(remotes)) {
-#    install.packages("remotes")
-#  }
-#  remotes::install_github("epiverse-trace/linelist", build_vignettes = TRUE)
 
 ## -----------------------------------------------------------------------------
 
@@ -22,17 +16,14 @@ library(linelist)
 
 
 ## -----------------------------------------------------------------------------
-
-# load libraries
-library(outbreaks)
+data(measles_hagelloch_1861, package = "outbreaks")
 
 # overview of the data
 head(measles_hagelloch_1861)
 
-
 ## -----------------------------------------------------------------------------
 
-library(tibble) # data.frame but with nice printing 
+library(tibble) # data.frame but with nice printing
 library(dplyr) # for data handling
 library(magrittr) # for the %>% operator
 library(linelist) # this package!
@@ -54,7 +45,9 @@ tags(x)
 ## -----------------------------------------------------------------------------
 
 x <- x %>%
-  mutate(inferred_outcome = if_else(is.na(date_of_death), "survided", "died")) %>%
+  mutate(
+    inferred_outcome = if_else(is.na(date_of_death), "survived", "died")
+  ) %>%
   set_tags(outcome = "inferred_outcome")
 x
 
@@ -92,27 +85,28 @@ x %>%
 
 # hybrid selection
 x %>%
-  select(1:2, tags = "gender")
+  select(1:2, has_tag("gender"))
 
 
 ## ----error = TRUE-------------------------------------------------------------
 # hybrid selection
 x %>%
-  select(1:2, tags = "gender")
+  select(1:2, has_tag("gender"))
 
 # hybrid selection - no warning
+lost_tags_action("none")
+
 x %>%
-  lost_tags_action("none") %>%
-  select(1:2, tags = "gender")
+  select(1:2, has_tag("gender"))
 
 # hybrid selection - error due to lost tags
-x %>%
-  lost_tags_action("error") %>%
-  select(1:2, tags = "gender")
+lost_tags_action("error")
 
-# note that `lost_tags_action` sets the behavior for any later operation, so we 
+x %>%
+  select(1:2, has_tag("gender"))
+
+# note that `lost_tags_action` sets the behavior for any later operation, so we
 # need to reset the default
 get_lost_tags_action() # check current behaviour
 lost_tags_action() # reset default
-
 

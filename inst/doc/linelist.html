@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+<title>An introduction to linelist</title>
+
+<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
+// be compatible with the behavior of Pandoc < 2.8).
+document.addEventListener('DOMContentLoaded', function(e) {
+  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
+  var i, h, a;
+  for (i = 0; i < hs.length; i++) {
+    h = hs[i];
+    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
+    a = h.attributes;
+    while (a.length > 0) h.removeAttribute(a[0].name);
+  }
+});
+</script>
+
+<style type="text/css">
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+
+<style type="text/css">
+code {
+white-space: pre;
+}
+.sourceCode {
+overflow: visible;
+}
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">An introduction to linelist</h1>
+
+
+
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">library</span>(linelist)</span></code></pre></div>
+<div id="motivations" class="section level1">
+<h1>Motivations</h1>
+<p>Outbreak analytics pipelines often start with <em>case line
+lists</em>, which are data tables in which every line is a different
+case/patient, and columns record different variables of potential
+epidemiological interest such as date of events (e.g. onset of symptom,
+case notification), disease outcome, or patient data (e.g. age, sex,
+occupation). Such data is typically held in a <code>data.frame</code>
+(or a <code>tibble</code>) and used in various downstream analysis.
+While this approach is functional, it often means that each analysis
+step will:</p>
+<ol style="list-style-type: decimal">
+<li><p>need to check the required inputs are present in the data, and
+for the user to specify where (e.g. ‘<em>This is the column where dates
+of onset are stored.</em>’)</p></li>
+<li><p>need to validate the required data (e.g. ‘<em>Check that the
+field storing dates of onset are indeed dates, and not a
+<code>character</code>.</em>’)</p></li>
+</ol>
+<p>The aim of <em>linelist</em> is to take care of these pre-requisites
+once and for all before downstream analyses, thus helping to make data
+pipelines more robust and straightforward.</p>
+</div>
+<div id="linelist-in-a-nutshell" class="section level1">
+<h1>linelist in a nutshell</h1>
+<div id="outline" class="section level2">
+<h2>Outline</h2>
+<p><em>linelist</em> is an R package which implements basic data
+representation for case line lists, alongside accessors and basic
+methods. It essentially provides three types of functionalities:</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>tagging</strong>: a <em>tags</em> system permits to
+pre-identify key epidemiological variables needed in downstream analyses
+(e.g. dates of case notification, symptom onset, age, gender, disease
+outcome)</p></li>
+<li><p><strong>validation</strong>: functions checking that tagged
+variables are indeed present in the <code>data.frame/tibble</code>, and
+that they have the expected type (e.g. checking that dates are
+<code>Date</code>, <code>integer</code> or
+<code>numeric</code>)</p></li>
+<li><p><strong>secured methods</strong>: generic functions which could
+lead to the loss of tagged variables have dedicated methods for
+<em>linelist</em> objects with adapted behaviours, either updating tags
+as needed (<em>e.g.</em> <code>rename()</code>,
+<code>names() &lt;-    ...</code>) or issuing warnings/errors when
+tagged variables are lost (<em>e.g.</em> <code>select()</code>,
+<code>x[]</code>, <code>x[[]]</code>)</p></li>
+</ol>
+</div>
+<div id="should-i-use-linelist" class="section level2">
+<h2>Should I use <em>linelist</em>?</h2>
+<p><em>linelist</em> is designed to add a robust, foundational layer to
+your data pipelines, but it might add unnecessary complexity to your
+analysis scripts. Here are a few hints to gauge if you should consider
+using the package.</p>
+<p><strong>You may have use for <em>linelist</em> if …</strong>:</p>
+<ul>
+<li><p>your data changes/updates over time (e.g. new entries, new
+variables, renamed variables)</p></li>
+<li><p>you build data pipelines entailing multiple layers of data
+processing and analysis</p></li>
+<li><p>you are looking to build re-useable analysis scripts,
+<em>i.e.</em> which will work on other datasets with minimal added
+changes</p></li>
+</ul>
+<p><strong>Conversely, you probably do not need it if …</strong>:</p>
+<ul>
+<li><p>you work on historical data, which has likely already been
+curated/validated and will no longer change</p></li>
+<li><p>you perform some quick, simple analysis of your data, which you
+will not need to expand on later</p></li>
+<li><p>your analysis scripts are very specific and will not be re-used
+elsewhere</p></li>
+</ul>
+</div>
+</div>
+<div id="getting-started" class="section level1">
+<h1>Getting started</h1>
+<div id="installation" class="section level2">
+<h2>Installation</h2>
+<p>Our stable versions are released periodically on CRAN, and can be
+installed using:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;linelist&quot;</span>, <span class="at">build_vignettes =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p>If you prefer using the latest features and bug fixes, you can
+alternatively install the development version of <em>linelist</em> from
+<a href="https://github.com/">GitHub</a> using the following
+commands:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(remotes)) {</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>  <span class="fu">install.packages</span>(<span class="st">&quot;remotes&quot;</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>}</span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;epiverse-trace/linelist&quot;</span>, <span class="at">build_vignettes =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p>Once installed, you can load the package in your R session using:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a></span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="fu">library</span>(linelist)</span></code></pre></div>
+</div>
+<div id="key-functionalities" class="section level2">
+<h2>Key functionalities</h2>
+<p>A <code>linelist</code> object is an instance of a
+<code>data.frame</code> or a <code>tibble</code> in which key
+epidemiological variables have been <em>tagged</em>. The main features
+of the packages are broken down into the 3 categories outlined
+above.</p>
+<div id="tagging-system" class="section level3">
+<h3>Tagging system</h3>
+<p>Tags are paired keys pointing a reference epidemiological variables
+to the name of a column in a <code>data.frame</code> or
+<code>tibble</code>. The tagging system permits to construct
+<code>linelist</code> objects, modify tags in existing objects, check
+and access existing tags and the corresponding variables.</p>
+<ul>
+<li><p><code>make_linelist()</code>: to create a <code>linelist</code>
+object by tagging key epi variables in a <code>data.frame</code> or a
+<code>tibble</code></p></li>
+<li><p><code>set_tags():</code> to add, remove, or modify tags in a
+<code>linelist</code></p></li>
+<li><p><code>tags()</code>: to list variables which have been tagged in
+a <code>linelist</code></p></li>
+<li><p><code>tags_names()</code>: to list all recognized tag names;
+details on what the tags represent can be found at <a href="https://epiverse-trace.github.io/linelist/reference/make_linelist.html"><code>?make_linelist</code></a></p></li>
+<li><p><code>select_tags():</code> to select columns of a
+<code>linelist</code> based on tags using <em>dplyr</em> compatible
+syntax</p></li>
+<li><p><code>tags_df()</code>: to obtain a <code>data.frame</code> of
+all the tagged variables in a <code>linelist</code></p></li>
+</ul>
+</div>
+<div id="validation" class="section level3">
+<h3>Validation</h3>
+<p>Basic routines are provided to validate <em>linelist</em> objects.
+More advanced validation e.g. looking at compatibility of dated events
+will be implemented in a separate package.</p>
+<ul>
+<li><p><code>validate_tags()</code>: check that tagged variables are
+present in the dataset, that tags match the pre-defined list of tagged
+variables</p></li>
+<li><p><code>validate_types()</code>: check that tagged variables have
+an acceptable class, as defined in <code>tags_types()</code></p></li>
+<li><p><code>validate_linelist()</code>: general validation of
+<em>linelist</em> objects, equivalent to running both
+<code>validate_tags()</code> and <code>validate_types()</code>, and
+checking the class of the object</p></li>
+</ul>
+</div>
+<div id="secured-methods" class="section level3">
+<h3>Secured methods</h3>
+<p>These are dedicated S3 methods for existing generics which can be
+used to prevent the loss of tagged variables.</p>
+<ul>
+<li><p><code>lost_tags_actions()</code>: to set the behaviour to adopt
+when tagged variables would be lost by an operation: issue a warning
+(default), an error, or ignore</p></li>
+<li><p><code>get_lost_tags_actions()</code>: to check the current
+behaviour for lost tagged variables</p></li>
+<li><p><code>names(x) &lt;-</code>: the ‘base R’ approach to renaming
+columns of a <code>linelist</code>; will rename tags as needed to match
+the new column names</p></li>
+<li><p><code>x[]</code> and <code>x[[]]</code>: for subsetting columns
+using ‘base R’ syntax; will behave according to
+<code>get_lost_tags_actions()</code> if tagged variables are
+lost</p></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="worked-example" class="section level1">
+<h1>Worked example</h1>
+<div id="example-dataset" class="section level2">
+<h2>Example dataset</h2>
+<p>In this example, we use the case line list of the Hagelloch 1861
+measles outbreak, distributed by the <em>outbreaks</em> pacakge as
+<code>measles_hagelloch_1861</code> .</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="fu">data</span>(measles_hagelloch_1861, <span class="at">package =</span> <span class="st">&quot;outbreaks&quot;</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="co"># overview of the data</span></span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="fu">head</span>(measles_hagelloch_1861)</span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a><span class="co">#&gt;   case_ID infector date_of_prodrome date_of_rash date_of_death age gender</span></span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a><span class="co">#&gt; 1       1       45       1861-11-21   1861-11-25          &lt;NA&gt;   7      f</span></span>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a><span class="co">#&gt; 2       2       45       1861-11-23   1861-11-27          &lt;NA&gt;   6      f</span></span>
+<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a><span class="co">#&gt; 3       3      172       1861-11-28   1861-12-02          &lt;NA&gt;   4      f</span></span>
+<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a><span class="co">#&gt; 4       4      180       1861-11-27   1861-11-28          &lt;NA&gt;  13      m</span></span>
+<span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a><span class="co">#&gt; 5       5       45       1861-11-22   1861-11-27          &lt;NA&gt;   8      f</span></span>
+<span id="cb5-11"><a href="#cb5-11" tabindex="-1"></a><span class="co">#&gt; 6       6      180       1861-11-26   1861-11-29          &lt;NA&gt;  12      m</span></span>
+<span id="cb5-12"><a href="#cb5-12" tabindex="-1"></a><span class="co">#&gt;   family_ID class complications x_loc y_loc</span></span>
+<span id="cb5-13"><a href="#cb5-13" tabindex="-1"></a><span class="co">#&gt; 1        41     1           yes 142.5 100.0</span></span>
+<span id="cb5-14"><a href="#cb5-14" tabindex="-1"></a><span class="co">#&gt; 2        41     1           yes 142.5 100.0</span></span>
+<span id="cb5-15"><a href="#cb5-15" tabindex="-1"></a><span class="co">#&gt; 3        41     0           yes 142.5 100.0</span></span>
+<span id="cb5-16"><a href="#cb5-16" tabindex="-1"></a><span class="co">#&gt; 4        61     2           yes 165.0 102.5</span></span>
+<span id="cb5-17"><a href="#cb5-17" tabindex="-1"></a><span class="co">#&gt; 5        42     1           yes 145.0 120.0</span></span>
+<span id="cb5-18"><a href="#cb5-18" tabindex="-1"></a><span class="co">#&gt; 6        42     2           yes 145.0 120.0</span></span></code></pre></div>
+</div>
+<div id="creating-a-linelist-object" class="section level2">
+<h2>Creating a <em>linelist</em> object</h2>
+<p>Let us assume we want to tag the following variables to facilitate
+downstream analyses, after having checked their tag name in
+<code>?make_linelist</code>:</p>
+<ul>
+<li>the date of symptom onset, here called <code>prodrome</code> (tag:
+<code>date_onset</code>)</li>
+<li>the date of death (tag: <code>date_death</code>)</li>
+<li>the age of the patient (tag: <code>age</code>)</li>
+<li>the gender of the patient (tag: <code>gender</code>)</li>
+</ul>
+<p>We first load a few useful packages, and create a
+<code>linelist</code> with the above information:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a></span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="fu">library</span>(tibble) <span class="co"># data.frame but with nice printing</span></span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a><span class="fu">library</span>(dplyr) <span class="co"># for data handling</span></span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a><span class="fu">library</span>(magrittr) <span class="co"># for the %&gt;% operator</span></span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a><span class="fu">library</span>(linelist) <span class="co"># this package!</span></span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a>x <span class="ot">&lt;-</span> measles_hagelloch_1861 <span class="sc">%&gt;%</span></span>
+<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a>  <span class="fu">tibble</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb6-9"><a href="#cb6-9" tabindex="-1"></a>  <span class="fu">make_linelist</span>(<span class="at">date_onset =</span> <span class="st">&quot;date_of_prodrome&quot;</span>,</span>
+<span id="cb6-10"><a href="#cb6-10" tabindex="-1"></a>                <span class="at">date_death =</span> <span class="st">&quot;date_of_death&quot;</span>,</span>
+<span id="cb6-11"><a href="#cb6-11" tabindex="-1"></a>                <span class="at">age =</span> <span class="st">&quot;age&quot;</span>,</span>
+<span id="cb6-12"><a href="#cb6-12" tabindex="-1"></a>                <span class="at">gender =</span> <span class="st">&quot;gender&quot;</span>)</span>
+<span id="cb6-13"><a href="#cb6-13" tabindex="-1"></a>x</span>
+<span id="cb6-14"><a href="#cb6-14" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb6-15"><a href="#cb6-15" tabindex="-1"></a><span class="co">#&gt; // linelist object</span></span>
+<span id="cb6-16"><a href="#cb6-16" tabindex="-1"></a><span class="co">#&gt; # A tibble: 188 × 12</span></span>
+<span id="cb6-17"><a href="#cb6-17" tabindex="-1"></a><span class="co">#&gt;    case_ID infector date_of_prodrome date_of_rash date_of_death   age gender</span></span>
+<span id="cb6-18"><a href="#cb6-18" tabindex="-1"></a><span class="co">#&gt;      &lt;int&gt;    &lt;int&gt; &lt;date&gt;           &lt;date&gt;       &lt;date&gt;        &lt;dbl&gt; &lt;fct&gt; </span></span>
+<span id="cb6-19"><a href="#cb6-19" tabindex="-1"></a><span class="co">#&gt;  1       1       45 1861-11-21       1861-11-25   NA                7 f     </span></span>
+<span id="cb6-20"><a href="#cb6-20" tabindex="-1"></a><span class="co">#&gt;  2       2       45 1861-11-23       1861-11-27   NA                6 f     </span></span>
+<span id="cb6-21"><a href="#cb6-21" tabindex="-1"></a><span class="co">#&gt;  3       3      172 1861-11-28       1861-12-02   NA                4 f     </span></span>
+<span id="cb6-22"><a href="#cb6-22" tabindex="-1"></a><span class="co">#&gt;  4       4      180 1861-11-27       1861-11-28   NA               13 m     </span></span>
+<span id="cb6-23"><a href="#cb6-23" tabindex="-1"></a><span class="co">#&gt;  5       5       45 1861-11-22       1861-11-27   NA                8 f     </span></span>
+<span id="cb6-24"><a href="#cb6-24" tabindex="-1"></a><span class="co">#&gt;  6       6      180 1861-11-26       1861-11-29   NA               12 m     </span></span>
+<span id="cb6-25"><a href="#cb6-25" tabindex="-1"></a><span class="co">#&gt;  7       7       42 1861-11-24       1861-11-28   NA                6 m     </span></span>
+<span id="cb6-26"><a href="#cb6-26" tabindex="-1"></a><span class="co">#&gt;  8       8       45 1861-11-21       1861-11-26   NA               10 m     </span></span>
+<span id="cb6-27"><a href="#cb6-27" tabindex="-1"></a><span class="co">#&gt;  9       9      182 1861-11-26       1861-11-30   NA               13 m     </span></span>
+<span id="cb6-28"><a href="#cb6-28" tabindex="-1"></a><span class="co">#&gt; 10      10       45 1861-11-21       1861-11-25   NA                7 f     </span></span>
+<span id="cb6-29"><a href="#cb6-29" tabindex="-1"></a><span class="co">#&gt; # ℹ 178 more rows</span></span>
+<span id="cb6-30"><a href="#cb6-30" tabindex="-1"></a><span class="co">#&gt; # ℹ 5 more variables: family_ID &lt;int&gt;, class &lt;fct&gt;, complications &lt;fct&gt;,</span></span>
+<span id="cb6-31"><a href="#cb6-31" tabindex="-1"></a><span class="co">#&gt; #   x_loc &lt;dbl&gt;, y_loc &lt;dbl&gt;</span></span>
+<span id="cb6-32"><a href="#cb6-32" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb6-33"><a href="#cb6-33" tabindex="-1"></a><span class="co">#&gt; // tags: date_onset:date_of_prodrome, date_death:date_of_death, gender:gender, age:age</span></span></code></pre></div>
+<p>The printing of the object confirms that the tags have been added. If
+we want to double-check which variables have been tagged:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a></span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="fu">tags</span>(x)</span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a><span class="co">#&gt; $date_onset</span></span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a><span class="co">#&gt; [1] &quot;date_of_prodrome&quot;</span></span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a><span class="co">#&gt; $date_death</span></span>
+<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a><span class="co">#&gt; [1] &quot;date_of_death&quot;</span></span>
+<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb7-9"><a href="#cb7-9" tabindex="-1"></a><span class="co">#&gt; $gender</span></span>
+<span id="cb7-10"><a href="#cb7-10" tabindex="-1"></a><span class="co">#&gt; [1] &quot;gender&quot;</span></span>
+<span id="cb7-11"><a href="#cb7-11" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb7-12"><a href="#cb7-12" tabindex="-1"></a><span class="co">#&gt; $age</span></span>
+<span id="cb7-13"><a href="#cb7-13" tabindex="-1"></a><span class="co">#&gt; [1] &quot;age&quot;</span></span></code></pre></div>
+</div>
+<div id="changing-tags" class="section level2">
+<h2>Changing tags</h2>
+<p>Tags can be added / removed / changed using
+<code>set_tags()</code>.</p>
+<p>Let us assume we also want to record the outcome: it is currently
+missing, but can be built from dates of deaths (missing date =
+survived). This can be done by using <code>mutate()</code> on
+<code>x</code> to create the new variable (remember <code>x</code> is
+not only a <code>linelist</code>, but also a regular <code>tibble</code>
+and this compatible with <code>dplyr</code> verbs), and setting up a new
+tag using <code>set_tags</code>:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a></span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>x <span class="ot">&lt;-</span> x <span class="sc">%&gt;%</span></span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a>    <span class="at">inferred_outcome =</span> <span class="fu">if_else</span>(<span class="fu">is.na</span>(date_of_death), <span class="st">&quot;survived&quot;</span>, <span class="st">&quot;died&quot;</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a>  <span class="fu">set_tags</span>(<span class="at">outcome =</span> <span class="st">&quot;inferred_outcome&quot;</span>)</span>
+<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a>x</span>
+<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb8-9"><a href="#cb8-9" tabindex="-1"></a><span class="co">#&gt; // linelist object</span></span>
+<span id="cb8-10"><a href="#cb8-10" tabindex="-1"></a><span class="co">#&gt; # A tibble: 188 × 13</span></span>
+<span id="cb8-11"><a href="#cb8-11" tabindex="-1"></a><span class="co">#&gt;    case_ID infector date_of_prodrome date_of_rash date_of_death   age gender</span></span>
+<span id="cb8-12"><a href="#cb8-12" tabindex="-1"></a><span class="co">#&gt;      &lt;int&gt;    &lt;int&gt; &lt;date&gt;           &lt;date&gt;       &lt;date&gt;        &lt;dbl&gt; &lt;fct&gt; </span></span>
+<span id="cb8-13"><a href="#cb8-13" tabindex="-1"></a><span class="co">#&gt;  1       1       45 1861-11-21       1861-11-25   NA                7 f     </span></span>
+<span id="cb8-14"><a href="#cb8-14" tabindex="-1"></a><span class="co">#&gt;  2       2       45 1861-11-23       1861-11-27   NA                6 f     </span></span>
+<span id="cb8-15"><a href="#cb8-15" tabindex="-1"></a><span class="co">#&gt;  3       3      172 1861-11-28       1861-12-02   NA                4 f     </span></span>
+<span id="cb8-16"><a href="#cb8-16" tabindex="-1"></a><span class="co">#&gt;  4       4      180 1861-11-27       1861-11-28   NA               13 m     </span></span>
+<span id="cb8-17"><a href="#cb8-17" tabindex="-1"></a><span class="co">#&gt;  5       5       45 1861-11-22       1861-11-27   NA                8 f     </span></span>
+<span id="cb8-18"><a href="#cb8-18" tabindex="-1"></a><span class="co">#&gt;  6       6      180 1861-11-26       1861-11-29   NA               12 m     </span></span>
+<span id="cb8-19"><a href="#cb8-19" tabindex="-1"></a><span class="co">#&gt;  7       7       42 1861-11-24       1861-11-28   NA                6 m     </span></span>
+<span id="cb8-20"><a href="#cb8-20" tabindex="-1"></a><span class="co">#&gt;  8       8       45 1861-11-21       1861-11-26   NA               10 m     </span></span>
+<span id="cb8-21"><a href="#cb8-21" tabindex="-1"></a><span class="co">#&gt;  9       9      182 1861-11-26       1861-11-30   NA               13 m     </span></span>
+<span id="cb8-22"><a href="#cb8-22" tabindex="-1"></a><span class="co">#&gt; 10      10       45 1861-11-21       1861-11-25   NA                7 f     </span></span>
+<span id="cb8-23"><a href="#cb8-23" tabindex="-1"></a><span class="co">#&gt; # ℹ 178 more rows</span></span>
+<span id="cb8-24"><a href="#cb8-24" tabindex="-1"></a><span class="co">#&gt; # ℹ 6 more variables: family_ID &lt;int&gt;, class &lt;fct&gt;, complications &lt;fct&gt;,</span></span>
+<span id="cb8-25"><a href="#cb8-25" tabindex="-1"></a><span class="co">#&gt; #   x_loc &lt;dbl&gt;, y_loc &lt;dbl&gt;, inferred_outcome &lt;chr&gt;</span></span>
+<span id="cb8-26"><a href="#cb8-26" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb8-27"><a href="#cb8-27" tabindex="-1"></a><span class="co">#&gt; // tags: date_onset:date_of_prodrome, date_death:date_of_death, gender:gender, age:age, outcome:inferred_outcome</span></span></code></pre></div>
+<p>If we wanted to undo the above, i.e. remove the <code>outcome</code>
+tag, we only need set it to <code>NULL</code>:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a></span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a>x <span class="ot">&lt;-</span> x <span class="sc">%&gt;%</span></span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a>  <span class="fu">set_tags</span>(<span class="at">outcome =</span> <span class="cn">NULL</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a><span class="fu">tags</span>(x)</span>
+<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a><span class="co">#&gt; $date_onset</span></span>
+<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a><span class="co">#&gt; [1] &quot;date_of_prodrome&quot;</span></span>
+<span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a><span class="co">#&gt; $date_death</span></span>
+<span id="cb9-9"><a href="#cb9-9" tabindex="-1"></a><span class="co">#&gt; [1] &quot;date_of_death&quot;</span></span>
+<span id="cb9-10"><a href="#cb9-10" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb9-11"><a href="#cb9-11" tabindex="-1"></a><span class="co">#&gt; $gender</span></span>
+<span id="cb9-12"><a href="#cb9-12" tabindex="-1"></a><span class="co">#&gt; [1] &quot;gender&quot;</span></span>
+<span id="cb9-13"><a href="#cb9-13" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb9-14"><a href="#cb9-14" tabindex="-1"></a><span class="co">#&gt; $age</span></span>
+<span id="cb9-15"><a href="#cb9-15" tabindex="-1"></a><span class="co">#&gt; [1] &quot;age&quot;</span></span></code></pre></div>
+</div>
+<div id="accessing-tagged-variables" class="section level2">
+<h2>Accessing tagged variables</h2>
+<p>Now that key variables have been tagged in <code>x</code>, we can
+used these pre-defined fields in downstream analyses, without having to
+worry about variable names and types. We could access tagged variables
+using any of the following means:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a></span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a><span class="co"># select tagged variables only</span></span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a>x <span class="sc">%&gt;%</span></span>
+<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a>  <span class="fu">select_tags</span>(date_onset, date_death)</span>
+<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a><span class="co">#&gt; Warning: `select_tags()` was deprecated in linelist 1.0.0.</span></span>
+<span id="cb10-6"><a href="#cb10-6" tabindex="-1"></a><span class="co">#&gt; ℹ This function is deprecated: use the two step `tags_df()` and</span></span>
+<span id="cb10-7"><a href="#cb10-7" tabindex="-1"></a><span class="co">#&gt;   `dplyr::select()` process instead</span></span>
+<span id="cb10-8"><a href="#cb10-8" tabindex="-1"></a><span class="co">#&gt; This warning is displayed once every 8 hours.</span></span>
+<span id="cb10-9"><a href="#cb10-9" tabindex="-1"></a><span class="co">#&gt; Call `lifecycle::last_lifecycle_warnings()` to see where this warning was</span></span>
+<span id="cb10-10"><a href="#cb10-10" tabindex="-1"></a><span class="co">#&gt; generated.</span></span>
+<span id="cb10-11"><a href="#cb10-11" tabindex="-1"></a><span class="co">#&gt; # A tibble: 188 × 2</span></span>
+<span id="cb10-12"><a href="#cb10-12" tabindex="-1"></a><span class="co">#&gt;    date_onset date_death</span></span>
+<span id="cb10-13"><a href="#cb10-13" tabindex="-1"></a><span class="co">#&gt;    &lt;date&gt;     &lt;date&gt;    </span></span>
+<span id="cb10-14"><a href="#cb10-14" tabindex="-1"></a><span class="co">#&gt;  1 1861-11-21 NA        </span></span>
+<span id="cb10-15"><a href="#cb10-15" tabindex="-1"></a><span class="co">#&gt;  2 1861-11-23 NA        </span></span>
+<span id="cb10-16"><a href="#cb10-16" tabindex="-1"></a><span class="co">#&gt;  3 1861-11-28 NA        </span></span>
+<span id="cb10-17"><a href="#cb10-17" tabindex="-1"></a><span class="co">#&gt;  4 1861-11-27 NA        </span></span>
+<span id="cb10-18"><a href="#cb10-18" tabindex="-1"></a><span class="co">#&gt;  5 1861-11-22 NA        </span></span>
+<span id="cb10-19"><a href="#cb10-19" tabindex="-1"></a><span class="co">#&gt;  6 1861-11-26 NA        </span></span>
+<span id="cb10-20"><a href="#cb10-20" tabindex="-1"></a><span class="co">#&gt;  7 1861-11-24 NA        </span></span>
+<span id="cb10-21"><a href="#cb10-21" tabindex="-1"></a><span class="co">#&gt;  8 1861-11-21 NA        </span></span>
+<span id="cb10-22"><a href="#cb10-22" tabindex="-1"></a><span class="co">#&gt;  9 1861-11-26 NA        </span></span>
+<span id="cb10-23"><a href="#cb10-23" tabindex="-1"></a><span class="co">#&gt; 10 1861-11-21 NA        </span></span>
+<span id="cb10-24"><a href="#cb10-24" tabindex="-1"></a><span class="co">#&gt; # ℹ 178 more rows</span></span>
+<span id="cb10-25"><a href="#cb10-25" tabindex="-1"></a></span>
+<span id="cb10-26"><a href="#cb10-26" tabindex="-1"></a><span class="co"># select tagged variables only with renaming on the fly</span></span>
+<span id="cb10-27"><a href="#cb10-27" tabindex="-1"></a>x <span class="sc">%&gt;%</span></span>
+<span id="cb10-28"><a href="#cb10-28" tabindex="-1"></a>  <span class="fu">select_tags</span>(<span class="at">onset =</span> date_onset, date_death)</span>
+<span id="cb10-29"><a href="#cb10-29" tabindex="-1"></a><span class="co">#&gt; # A tibble: 188 × 2</span></span>
+<span id="cb10-30"><a href="#cb10-30" tabindex="-1"></a><span class="co">#&gt;    onset      date_death</span></span>
+<span id="cb10-31"><a href="#cb10-31" tabindex="-1"></a><span class="co">#&gt;    &lt;date&gt;     &lt;date&gt;    </span></span>
+<span id="cb10-32"><a href="#cb10-32" tabindex="-1"></a><span class="co">#&gt;  1 1861-11-21 NA        </span></span>
+<span id="cb10-33"><a href="#cb10-33" tabindex="-1"></a><span class="co">#&gt;  2 1861-11-23 NA        </span></span>
+<span id="cb10-34"><a href="#cb10-34" tabindex="-1"></a><span class="co">#&gt;  3 1861-11-28 NA        </span></span>
+<span id="cb10-35"><a href="#cb10-35" tabindex="-1"></a><span class="co">#&gt;  4 1861-11-27 NA        </span></span>
+<span id="cb10-36"><a href="#cb10-36" tabindex="-1"></a><span class="co">#&gt;  5 1861-11-22 NA        </span></span>
+<span id="cb10-37"><a href="#cb10-37" tabindex="-1"></a><span class="co">#&gt;  6 1861-11-26 NA        </span></span>
+<span id="cb10-38"><a href="#cb10-38" tabindex="-1"></a><span class="co">#&gt;  7 1861-11-24 NA        </span></span>
+<span id="cb10-39"><a href="#cb10-39" tabindex="-1"></a><span class="co">#&gt;  8 1861-11-21 NA        </span></span>
+<span id="cb10-40"><a href="#cb10-40" tabindex="-1"></a><span class="co">#&gt;  9 1861-11-26 NA        </span></span>
+<span id="cb10-41"><a href="#cb10-41" tabindex="-1"></a><span class="co">#&gt; 10 1861-11-21 NA        </span></span>
+<span id="cb10-42"><a href="#cb10-42" tabindex="-1"></a><span class="co">#&gt; # ℹ 178 more rows</span></span>
+<span id="cb10-43"><a href="#cb10-43" tabindex="-1"></a></span>
+<span id="cb10-44"><a href="#cb10-44" tabindex="-1"></a><span class="co"># get all tagged variables in a data.frame</span></span>
+<span id="cb10-45"><a href="#cb10-45" tabindex="-1"></a>x <span class="sc">%&gt;%</span></span>
+<span id="cb10-46"><a href="#cb10-46" tabindex="-1"></a>  <span class="fu">tags_df</span>()</span>
+<span id="cb10-47"><a href="#cb10-47" tabindex="-1"></a><span class="co">#&gt; # A tibble: 188 × 4</span></span>
+<span id="cb10-48"><a href="#cb10-48" tabindex="-1"></a><span class="co">#&gt;    date_onset date_death gender   age</span></span>
+<span id="cb10-49"><a href="#cb10-49" tabindex="-1"></a><span class="co">#&gt;    &lt;date&gt;     &lt;date&gt;     &lt;fct&gt;  &lt;dbl&gt;</span></span>
+<span id="cb10-50"><a href="#cb10-50" tabindex="-1"></a><span class="co">#&gt;  1 1861-11-21 NA         f          7</span></span>
+<span id="cb10-51"><a href="#cb10-51" tabindex="-1"></a><span class="co">#&gt;  2 1861-11-23 NA         f          6</span></span>
+<span id="cb10-52"><a href="#cb10-52" tabindex="-1"></a><span class="co">#&gt;  3 1861-11-28 NA         f          4</span></span>
+<span id="cb10-53"><a href="#cb10-53" tabindex="-1"></a><span class="co">#&gt;  4 1861-11-27 NA         m         13</span></span>
+<span id="cb10-54"><a href="#cb10-54" tabindex="-1"></a><span class="co">#&gt;  5 1861-11-22 NA         f          8</span></span>
+<span id="cb10-55"><a href="#cb10-55" tabindex="-1"></a><span class="co">#&gt;  6 1861-11-26 NA         m         12</span></span>
+<span id="cb10-56"><a href="#cb10-56" tabindex="-1"></a><span class="co">#&gt;  7 1861-11-24 NA         m          6</span></span>
+<span id="cb10-57"><a href="#cb10-57" tabindex="-1"></a><span class="co">#&gt;  8 1861-11-21 NA         m         10</span></span>
+<span id="cb10-58"><a href="#cb10-58" tabindex="-1"></a><span class="co">#&gt;  9 1861-11-26 NA         m         13</span></span>
+<span id="cb10-59"><a href="#cb10-59" tabindex="-1"></a><span class="co">#&gt; 10 1861-11-21 NA         f          7</span></span>
+<span id="cb10-60"><a href="#cb10-60" tabindex="-1"></a><span class="co">#&gt; # ℹ 178 more rows</span></span></code></pre></div>
+</div>
+<div id="using-safeguards" class="section level2">
+<h2>Using safeguards</h2>
+<p>Because <code>x</code> remains a valid <code>tibble</code>, we can
+use any data handling operations implemented in <code>dplyr</code>.
+However, some of these operations may cause accidental removal of key
+tagged variables. <em>linelist</em> provides a safeguard mechanism
+against this. For instance, let’s assume we want to select only some
+columns of <code>x</code>:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a></span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a><span class="co"># hybrid selection</span></span>
+<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a>x <span class="sc">%&gt;%</span></span>
+<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a>  <span class="fu">select</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>)</span>
+<span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a><span class="co">#&gt; Warning in prune_tags(out, lost_action): The following tags have lost their variable:</span></span>
+<span id="cb11-6"><a href="#cb11-6" tabindex="-1"></a><span class="co">#&gt;  date_onset:date_of_prodrome, date_death:date_of_death, gender:gender, age:age</span></span>
+<span id="cb11-7"><a href="#cb11-7" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb11-8"><a href="#cb11-8" tabindex="-1"></a><span class="co">#&gt; // linelist object</span></span>
+<span id="cb11-9"><a href="#cb11-9" tabindex="-1"></a><span class="co">#&gt; # A tibble: 188 × 2</span></span>
+<span id="cb11-10"><a href="#cb11-10" tabindex="-1"></a><span class="co">#&gt;    case_ID infector</span></span>
+<span id="cb11-11"><a href="#cb11-11" tabindex="-1"></a><span class="co">#&gt;      &lt;int&gt;    &lt;int&gt;</span></span>
+<span id="cb11-12"><a href="#cb11-12" tabindex="-1"></a><span class="co">#&gt;  1       1       45</span></span>
+<span id="cb11-13"><a href="#cb11-13" tabindex="-1"></a><span class="co">#&gt;  2       2       45</span></span>
+<span id="cb11-14"><a href="#cb11-14" tabindex="-1"></a><span class="co">#&gt;  3       3      172</span></span>
+<span id="cb11-15"><a href="#cb11-15" tabindex="-1"></a><span class="co">#&gt;  4       4      180</span></span>
+<span id="cb11-16"><a href="#cb11-16" tabindex="-1"></a><span class="co">#&gt;  5       5       45</span></span>
+<span id="cb11-17"><a href="#cb11-17" tabindex="-1"></a><span class="co">#&gt;  6       6      180</span></span>
+<span id="cb11-18"><a href="#cb11-18" tabindex="-1"></a><span class="co">#&gt;  7       7       42</span></span>
+<span id="cb11-19"><a href="#cb11-19" tabindex="-1"></a><span class="co">#&gt;  8       8       45</span></span>
+<span id="cb11-20"><a href="#cb11-20" tabindex="-1"></a><span class="co">#&gt;  9       9      182</span></span>
+<span id="cb11-21"><a href="#cb11-21" tabindex="-1"></a><span class="co">#&gt; 10      10       45</span></span>
+<span id="cb11-22"><a href="#cb11-22" tabindex="-1"></a><span class="co">#&gt; # ℹ 178 more rows</span></span>
+<span id="cb11-23"><a href="#cb11-23" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb11-24"><a href="#cb11-24" tabindex="-1"></a><span class="co">#&gt; // tags: [no tagged variable]</span></span></code></pre></div>
+<p>Here, the above command gave a meaningful warning, in which
+<code>select()</code> removes some of the variables that were
+tagged.</p>
+<p>We can also use the <code>has_tag()</code> select helper to select
+columns via their tag. For example, to retain the first 2 variables, and
+the <code>gender</code> tag:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a></span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a><span class="co"># hybrid selection</span></span>
+<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a>x <span class="sc">%&gt;%</span></span>
+<span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a>  <span class="fu">select</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="fu">has_tag</span>(<span class="st">&quot;gender&quot;</span>))</span>
+<span id="cb12-5"><a href="#cb12-5" tabindex="-1"></a><span class="co">#&gt; Warning in prune_tags(out, lost_action): The following tags have lost their variable:</span></span>
+<span id="cb12-6"><a href="#cb12-6" tabindex="-1"></a><span class="co">#&gt;  date_onset:date_of_prodrome, date_death:date_of_death, age:age</span></span>
+<span id="cb12-7"><a href="#cb12-7" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb12-8"><a href="#cb12-8" tabindex="-1"></a><span class="co">#&gt; // linelist object</span></span>
+<span id="cb12-9"><a href="#cb12-9" tabindex="-1"></a><span class="co">#&gt; # A tibble: 188 × 3</span></span>
+<span id="cb12-10"><a href="#cb12-10" tabindex="-1"></a><span class="co">#&gt;    case_ID infector gender</span></span>
+<span id="cb12-11"><a href="#cb12-11" tabindex="-1"></a><span class="co">#&gt;      &lt;int&gt;    &lt;int&gt; &lt;fct&gt; </span></span>
+<span id="cb12-12"><a href="#cb12-12" tabindex="-1"></a><span class="co">#&gt;  1       1       45 f     </span></span>
+<span id="cb12-13"><a href="#cb12-13" tabindex="-1"></a><span class="co">#&gt;  2       2       45 f     </span></span>
+<span id="cb12-14"><a href="#cb12-14" tabindex="-1"></a><span class="co">#&gt;  3       3      172 f     </span></span>
+<span id="cb12-15"><a href="#cb12-15" tabindex="-1"></a><span class="co">#&gt;  4       4      180 m     </span></span>
+<span id="cb12-16"><a href="#cb12-16" tabindex="-1"></a><span class="co">#&gt;  5       5       45 f     </span></span>
+<span id="cb12-17"><a href="#cb12-17" tabindex="-1"></a><span class="co">#&gt;  6       6      180 m     </span></span>
+<span id="cb12-18"><a href="#cb12-18" tabindex="-1"></a><span class="co">#&gt;  7       7       42 m     </span></span>
+<span id="cb12-19"><a href="#cb12-19" tabindex="-1"></a><span class="co">#&gt;  8       8       45 m     </span></span>
+<span id="cb12-20"><a href="#cb12-20" tabindex="-1"></a><span class="co">#&gt;  9       9      182 m     </span></span>
+<span id="cb12-21"><a href="#cb12-21" tabindex="-1"></a><span class="co">#&gt; 10      10       45 f     </span></span>
+<span id="cb12-22"><a href="#cb12-22" tabindex="-1"></a><span class="co">#&gt; # ℹ 178 more rows</span></span>
+<span id="cb12-23"><a href="#cb12-23" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb12-24"><a href="#cb12-24" tabindex="-1"></a><span class="co">#&gt; // tags: gender:gender</span></span></code></pre></div>
+<p>Again, we observe a warning as before due to the loss of tagged
+variables in the operation. This behaviour can be silenced if needed, or
+could be changed to issue an error (for stronger pipelines for
+instance):</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="co"># hybrid selection</span></span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a>x <span class="sc">%&gt;%</span></span>
+<span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a>  <span class="fu">select</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="fu">has_tag</span>(<span class="st">&quot;gender&quot;</span>))</span>
+<span id="cb13-4"><a href="#cb13-4" tabindex="-1"></a><span class="co">#&gt; Warning in prune_tags(out, lost_action): The following tags have lost their variable:</span></span>
+<span id="cb13-5"><a href="#cb13-5" tabindex="-1"></a><span class="co">#&gt;  date_onset:date_of_prodrome, date_death:date_of_death, age:age</span></span>
+<span id="cb13-6"><a href="#cb13-6" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb13-7"><a href="#cb13-7" tabindex="-1"></a><span class="co">#&gt; // linelist object</span></span>
+<span id="cb13-8"><a href="#cb13-8" tabindex="-1"></a><span class="co">#&gt; # A tibble: 188 × 3</span></span>
+<span id="cb13-9"><a href="#cb13-9" tabindex="-1"></a><span class="co">#&gt;    case_ID infector gender</span></span>
+<span id="cb13-10"><a href="#cb13-10" tabindex="-1"></a><span class="co">#&gt;      &lt;int&gt;    &lt;int&gt; &lt;fct&gt; </span></span>
+<span id="cb13-11"><a href="#cb13-11" tabindex="-1"></a><span class="co">#&gt;  1       1       45 f     </span></span>
+<span id="cb13-12"><a href="#cb13-12" tabindex="-1"></a><span class="co">#&gt;  2       2       45 f     </span></span>
+<span id="cb13-13"><a href="#cb13-13" tabindex="-1"></a><span class="co">#&gt;  3       3      172 f     </span></span>
+<span id="cb13-14"><a href="#cb13-14" tabindex="-1"></a><span class="co">#&gt;  4       4      180 m     </span></span>
+<span id="cb13-15"><a href="#cb13-15" tabindex="-1"></a><span class="co">#&gt;  5       5       45 f     </span></span>
+<span id="cb13-16"><a href="#cb13-16" tabindex="-1"></a><span class="co">#&gt;  6       6      180 m     </span></span>
+<span id="cb13-17"><a href="#cb13-17" tabindex="-1"></a><span class="co">#&gt;  7       7       42 m     </span></span>
+<span id="cb13-18"><a href="#cb13-18" tabindex="-1"></a><span class="co">#&gt;  8       8       45 m     </span></span>
+<span id="cb13-19"><a href="#cb13-19" tabindex="-1"></a><span class="co">#&gt;  9       9      182 m     </span></span>
+<span id="cb13-20"><a href="#cb13-20" tabindex="-1"></a><span class="co">#&gt; 10      10       45 f     </span></span>
+<span id="cb13-21"><a href="#cb13-21" tabindex="-1"></a><span class="co">#&gt; # ℹ 178 more rows</span></span>
+<span id="cb13-22"><a href="#cb13-22" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb13-23"><a href="#cb13-23" tabindex="-1"></a><span class="co">#&gt; // tags: gender:gender</span></span>
+<span id="cb13-24"><a href="#cb13-24" tabindex="-1"></a></span>
+<span id="cb13-25"><a href="#cb13-25" tabindex="-1"></a><span class="co"># hybrid selection - no warning</span></span>
+<span id="cb13-26"><a href="#cb13-26" tabindex="-1"></a><span class="fu">lost_tags_action</span>(<span class="st">&quot;none&quot;</span>)</span>
+<span id="cb13-27"><a href="#cb13-27" tabindex="-1"></a><span class="co">#&gt; Lost tags will now be ignored.</span></span>
+<span id="cb13-28"><a href="#cb13-28" tabindex="-1"></a></span>
+<span id="cb13-29"><a href="#cb13-29" tabindex="-1"></a>x <span class="sc">%&gt;%</span></span>
+<span id="cb13-30"><a href="#cb13-30" tabindex="-1"></a>  <span class="fu">select</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="fu">has_tag</span>(<span class="st">&quot;gender&quot;</span>))</span>
+<span id="cb13-31"><a href="#cb13-31" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb13-32"><a href="#cb13-32" tabindex="-1"></a><span class="co">#&gt; // linelist object</span></span>
+<span id="cb13-33"><a href="#cb13-33" tabindex="-1"></a><span class="co">#&gt; # A tibble: 188 × 3</span></span>
+<span id="cb13-34"><a href="#cb13-34" tabindex="-1"></a><span class="co">#&gt;    case_ID infector gender</span></span>
+<span id="cb13-35"><a href="#cb13-35" tabindex="-1"></a><span class="co">#&gt;      &lt;int&gt;    &lt;int&gt; &lt;fct&gt; </span></span>
+<span id="cb13-36"><a href="#cb13-36" tabindex="-1"></a><span class="co">#&gt;  1       1       45 f     </span></span>
+<span id="cb13-37"><a href="#cb13-37" tabindex="-1"></a><span class="co">#&gt;  2       2       45 f     </span></span>
+<span id="cb13-38"><a href="#cb13-38" tabindex="-1"></a><span class="co">#&gt;  3       3      172 f     </span></span>
+<span id="cb13-39"><a href="#cb13-39" tabindex="-1"></a><span class="co">#&gt;  4       4      180 m     </span></span>
+<span id="cb13-40"><a href="#cb13-40" tabindex="-1"></a><span class="co">#&gt;  5       5       45 f     </span></span>
+<span id="cb13-41"><a href="#cb13-41" tabindex="-1"></a><span class="co">#&gt;  6       6      180 m     </span></span>
+<span id="cb13-42"><a href="#cb13-42" tabindex="-1"></a><span class="co">#&gt;  7       7       42 m     </span></span>
+<span id="cb13-43"><a href="#cb13-43" tabindex="-1"></a><span class="co">#&gt;  8       8       45 m     </span></span>
+<span id="cb13-44"><a href="#cb13-44" tabindex="-1"></a><span class="co">#&gt;  9       9      182 m     </span></span>
+<span id="cb13-45"><a href="#cb13-45" tabindex="-1"></a><span class="co">#&gt; 10      10       45 f     </span></span>
+<span id="cb13-46"><a href="#cb13-46" tabindex="-1"></a><span class="co">#&gt; # ℹ 178 more rows</span></span>
+<span id="cb13-47"><a href="#cb13-47" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb13-48"><a href="#cb13-48" tabindex="-1"></a><span class="co">#&gt; // tags: gender:gender</span></span>
+<span id="cb13-49"><a href="#cb13-49" tabindex="-1"></a></span>
+<span id="cb13-50"><a href="#cb13-50" tabindex="-1"></a><span class="co"># hybrid selection - error due to lost tags</span></span>
+<span id="cb13-51"><a href="#cb13-51" tabindex="-1"></a><span class="fu">lost_tags_action</span>(<span class="st">&quot;error&quot;</span>)</span>
+<span id="cb13-52"><a href="#cb13-52" tabindex="-1"></a><span class="co">#&gt; Lost tags will now issue an error.</span></span>
+<span id="cb13-53"><a href="#cb13-53" tabindex="-1"></a></span>
+<span id="cb13-54"><a href="#cb13-54" tabindex="-1"></a>x <span class="sc">%&gt;%</span></span>
+<span id="cb13-55"><a href="#cb13-55" tabindex="-1"></a>  <span class="fu">select</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="fu">has_tag</span>(<span class="st">&quot;gender&quot;</span>))</span>
+<span id="cb13-56"><a href="#cb13-56" tabindex="-1"></a><span class="co">#&gt; Error in prune_tags(out, lost_action): The following tags have lost their variable:</span></span>
+<span id="cb13-57"><a href="#cb13-57" tabindex="-1"></a><span class="co">#&gt;  date_onset:date_of_prodrome, date_death:date_of_death, age:age</span></span>
+<span id="cb13-58"><a href="#cb13-58" tabindex="-1"></a></span>
+<span id="cb13-59"><a href="#cb13-59" tabindex="-1"></a><span class="co"># note that `lost_tags_action` sets the behavior for any later operation, so we</span></span>
+<span id="cb13-60"><a href="#cb13-60" tabindex="-1"></a><span class="co"># need to reset the default</span></span>
+<span id="cb13-61"><a href="#cb13-61" tabindex="-1"></a><span class="fu">get_lost_tags_action</span>() <span class="co"># check current behaviour</span></span>
+<span id="cb13-62"><a href="#cb13-62" tabindex="-1"></a><span class="co">#&gt; [1] &quot;error&quot;</span></span>
+<span id="cb13-63"><a href="#cb13-63" tabindex="-1"></a><span class="fu">lost_tags_action</span>() <span class="co"># reset default</span></span>
+<span id="cb13-64"><a href="#cb13-64" tabindex="-1"></a><span class="co">#&gt; Lost tags will now issue a warning.</span></span></code></pre></div>
+</div>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
