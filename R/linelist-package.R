@@ -8,13 +8,7 @@
 #' seamlessly used in downstream analyses, making data pipelines more robust and
 #' reliable.
 #'
-#' @docType package
-#'
-#' @name linelist
-#'
 #' @aliases linelist
-#'
-#' @author Thibaut Jombart \email{thibaut@@data.org}
 #'
 #' @section Main functions:
 #'
@@ -44,8 +38,8 @@
 #'   * `names() <-` and `rename` (see [dplyr::rename()]): will rename tags as
 #'   needed
 #'
-#'   * `x[...] <-` and `x[[...]] <-` (see [sub_linelist]): will adopt the desire
-#'   behaviour when tagged variables are lost
+#'   * `x[...] <-` and `x[[...]] <-` (see [sub_linelist]): will adopt the
+#'    desired behaviour when tagged variables are lost
 #'
 #'   * `print()`: prints info about the `linelist` in addition to the
 #'   `data.frame` or `tibble`
@@ -69,9 +63,6 @@
 #'
 #'   ## check tagged variables
 #'   tags(x)
-#'
-#'   ## extract tagged variables
-#'   select_tags(x, "gender", "age")
 #'
 #'   ## robust renaming
 #'   names(x)[1] <- "identifier"
@@ -110,7 +101,11 @@
 #'       set_tags(outcome = "result") %>%
 #'       rename(identifier = case_ID)
 #'
-#'     x
+#'     head(x)
+#'
+#'     ## extract tagged variables
+#'     x %>%
+#'       select(has_tag(c("gender", "age")))
 #'
 #'     x %>%
 #'       tags()
@@ -120,4 +115,10 @@
 #'   }
 #' }
 #'
+#' @keywords internal
+"_PACKAGE"
+
+## usethis namespace: start
+#' @importFrom lifecycle deprecated
+## usethis namespace: end
 NULL

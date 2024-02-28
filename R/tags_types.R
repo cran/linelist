@@ -8,8 +8,6 @@
 #'
 #' @inheritParams make_linelist
 #'
-#' @author Thibaut Jombart \email{thibaut@@data.org}
-#'
 #' @return A named `list`.
 #'
 #' @seealso
@@ -44,10 +42,8 @@ tags_types <- function(..., allow_extra = FALSE) {
     outcome = category_types
   )
 
-  new_values <- list(...)
-  if (length(new_values)) {
-    lapply(new_values, checkmate::assertCharacter, min.len = 1)
-  }
+  new_values <- rlang::list2(...)
+  checkmate::assert_list(new_values, types = "character")
 
   modify_defaults(defaults = defaults, x = new_values, strict = !allow_extra)
 }

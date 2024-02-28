@@ -1,4 +1,4 @@
-test_that("tests for se_tags", {
+test_that("tests for set_tags()", {
   x <- make_linelist(cars, date_onset = "dist")
 
   # Check error messages
@@ -8,7 +8,7 @@ test_that("tests for se_tags", {
   msg <- "Use only tags listed in `tags_names()`, or set `allow_extra = TRUE`"
   expect_error(set_tags(x, toto = 1), msg, fixed = TRUE)
 
-  msg <- "Must be element of set \\{'speed','dist'\\}, but is 'toto'." # nolint
+  msg <- "Must be element of set \\{'speed','dist'\\}, but is" # nolint
   expect_error(set_tags(x, outcome = "toto"), msg)
 
 
@@ -19,6 +19,6 @@ test_that("tests for se_tags", {
   expect_identical(tags(x)$date_onset, "dist")
 
   x <- set_tags(x, id = "speed", date_outcome = "dist")
-  y <- set_tags(x, list(id = "speed", date_outcome = "dist"))
+  y <- set_tags(x, !!!list(id = "speed", date_outcome = "dist"))
   expect_identical(x, y)
 })

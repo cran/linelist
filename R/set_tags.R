@@ -10,8 +10,6 @@
 #'
 #' @export
 #'
-#' @author Thibaut Jombart \email{thibaut@@data.org}
-#'
 #' @return The function returns a `linelist` object.
 #'
 #' @examples
@@ -39,7 +37,7 @@
 #'   tags(x)
 #'
 #'   ## setting tags providing a list (used to restore old tags here)
-#'   x <- set_tags(x, old_tags)
+#'   x <- set_tags(x, !!!old_tags)
 #'   tags(x)
 #' }
 #'
@@ -51,21 +49,21 @@ set_tags <- function(x, ..., allow_extra = FALSE) {
 
   old_tags <- attr(x, "tags")
   defaults <- tags_defaults()
-  new_tags <- list(...)
+  new_tags <- rlang::list2(...)
+
   if (length(new_tags) && is.list(new_tags[[1]])) {
+    warning(
+      "The use of a list of tags is deprecated. ",
+      "Please use the splice operator (!!!) instead. ",
+      "More information is available in the examples and in the ",
+      "?rlang::`dyn-dots` documentation."
+    )
     new_tags <- new_tags[[1]]
   }
 
   final_tags <- modify_defaults(defaults, old_tags, strict = FALSE)
   final_tags <- modify_defaults(old_tags, new_tags, strict = !allow_extra)
 
-  out <- x
-  for (i in seq_along(final_tags)) {
-    out <- tag_variable(out,
-      var_type = names(final_tags)[i],
-      var_name = final_tags[[i]]
-    )
-  }
+  tag_variables(x, final_tags)
 
-  out
 }

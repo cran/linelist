@@ -11,9 +11,7 @@ library(linelist)
 #  install.packages("linelist", build_vignettes = TRUE)
 
 ## -----------------------------------------------------------------------------
-
 library(linelist)
-
 
 ## -----------------------------------------------------------------------------
 data(measles_hagelloch_1861, package = "outbreaks")
@@ -22,7 +20,6 @@ data(measles_hagelloch_1861, package = "outbreaks")
 head(measles_hagelloch_1861)
 
 ## -----------------------------------------------------------------------------
-
 library(tibble) # data.frame but with nice printing
 library(dplyr) # for data handling
 library(magrittr) # for the %>% operator
@@ -34,16 +31,12 @@ x <- measles_hagelloch_1861 %>%
                 date_death = "date_of_death",
                 age = "age",
                 gender = "gender")
-x
-
+head(x)
 
 ## -----------------------------------------------------------------------------
-
 tags(x)
 
-
 ## -----------------------------------------------------------------------------
-
 x <- x %>%
   mutate(
     inferred_outcome = if_else(is.na(date_of_death), "survived", "died")
@@ -51,42 +44,33 @@ x <- x %>%
   set_tags(outcome = "inferred_outcome")
 x
 
-
 ## -----------------------------------------------------------------------------
-
 x <- x %>%
   set_tags(outcome = NULL)
 tags(x)
 
-
 ## -----------------------------------------------------------------------------
-
 # select tagged variables only
 x %>%
-  select_tags(date_onset, date_death)
+  select(has_tag(c("date_onset", "date_death")))
 
 # select tagged variables only with renaming on the fly
 x %>%
-  select_tags(onset = date_onset, date_death)
+  select(onset = has_tag("date_onset"))
 
 # get all tagged variables in a data.frame
 x %>%
   tags_df()
 
-
 ## -----------------------------------------------------------------------------
-
 # hybrid selection
 x %>%
   select(1:2)
 
-
 ## -----------------------------------------------------------------------------
-
 # hybrid selection
 x %>%
   select(1:2, has_tag("gender"))
-
 
 ## ----error = TRUE-------------------------------------------------------------
 # hybrid selection

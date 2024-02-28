@@ -7,12 +7,10 @@
 tags_types(..., allow_extra = FALSE)
 }
 \arguments{
-\item{...}{a series of tags provided as \code{tag_name = "column_name"}, where
-\code{tag_name} indicates any of the known variables listed in 'Details';
-alternatively, a named \code{list} of variables to be tagged, where names
-indicate the types of variable (to be selected from \code{\link[=tags_names]{tags_names()}}), and
-values indicate their name in the input \code{data.frame}; see details for a
-list of known variable types and their expected content}
+\item{...}{<\code{\link[rlang:dyn-dots]{dynamic-dots}}> A series of tags provided as
+\code{tag_name = "column_name"}, where \code{tag_name} indicates any of the known
+variables listed in 'Details' and values indicate their name in \code{x}; see
+details for a list of known variable types and their expected content}
 
 \item{allow_extra}{a \code{logical} indicating if additional data tags not
 currently recognized by \code{linelist} should be allowed; if \code{FALSE}, unknown
@@ -43,7 +41,4 @@ tags_types(sequence = "DNAbin", allow_extra = TRUE)
 \item \code{\link[=validate_types]{validate_types()}} uses \code{\link[=tags_types]{tags_types()}} for validating tags
 \item \code{\link[=validate_linelist]{validate_linelist()}} uses \code{\link[=tags_types]{tags_types()}} for validating tags
 }
-}
-\author{
-Thibaut Jombart \email{thibaut@data.org}
 }

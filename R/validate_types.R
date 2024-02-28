@@ -10,8 +10,6 @@
 #' @param ref_types a `list` providing allowed types for all tags, as returned
 #'   by [tags_types()]
 #'
-#' @author Thibaut Jombart \email{thibaut@@data.org}
-#'
 #' @return A named `list`.
 #'
 #' @seealso
@@ -43,20 +41,38 @@ validate_types <- function(x, ref_types = tags_types()) {
 
   df_to_check <- tags_df(x)
 
-  for (i in seq_len(ncol(df_to_check))) {
-    res <- validate_type(
-      df_to_check[[i]],
-      names(df_to_check)[i],
-      ref_types
+  if (!all(names(df_to_check) %in% names(ref_types))) {
+    stop(
+      "Allowed types for tag ",
+      toString(paste0("`", setdiff(names(df_to_check), names(ref_types)), "`")),
+      " are not documented in `ref_types`.",
+      call. = FALSE
     )
-    if (is.character(res)) {
-      msg <- sprintf(
-        "Issue when checking class of tag `%s`:\n%s",
-        names(df_to_check)[i],
-        res
+  }
+
+  type_checks <- lapply(
+    names(df_to_check),
+    function(tag) {
+      allowed_types <- ref_types[[tag]]
+      checkmate::check_multi_class(
+        df_to_check[[tag]],
+        allowed_types,
+        null.ok = TRUE
       )
-      stop(msg)
     }
+  )
+  has_correct_types <- vapply(type_checks, isTRUE, logical(1))
+
+  if (!all(has_correct_types)) {
+    stop(
+      "Some tags have the wrong class:\n",
+      sprintf(
+        "  - %s: %s\n",
+        names(df_to_check)[!has_correct_types],
+        type_checks[!has_correct_types]
+      ),
+      call. = FALSE
+    )
   }
 
   x

@@ -5,6 +5,7 @@
 \alias{sub_linelist}
 \alias{[<-.linelist}
 \alias{[[<-.linelist}
+\alias{$<-.linelist}
 \title{Subsetting of linelist objects}
 \usage{
 \method{[}{linelist}(x, i, j, drop = FALSE)
@@ -12,6 +13,8 @@
 \method{[}{linelist}(x, i, j) <- value
 
 \method{[[}{linelist}(x, i, j) <- value
+
+\method{$}{linelist}(x, name) <- value
 }
 \arguments{
 \item{x}{a \code{linelist} object}
@@ -27,6 +30,13 @@ columns of the \code{linelist}}
 case the \code{linelist} class is lost as well; defaults to \code{FALSE}}
 
 \item{value}{the replacement to be used for the entries identified in \code{x}}
+
+\item{name}{
+    A literal character string or a \link[base]{name} (possibly \link[base]{backtick}
+    quoted).  For extraction, this is normally (see under
+    \sQuote{Environments}) partially matched to the \code{\link[base]{names}}
+    of the object.
+  }
 }
 \value{
 If no drop is happening, a \code{linelist}. Otherwise an atomic vector.
@@ -59,6 +69,9 @@ if (require(outbreaks) && require(dplyr) && require(magrittr)) {
 
   x[[2]] <- NULL
   x
+
+  x$age <- NULL
+  x
 }
 }
 \seealso{
@@ -67,7 +80,4 @@ if (require(outbreaks) && require(dplyr) && require(magrittr)) {
 lost through subsetting; default is to issue a warning
 \item \code{\link[=get_lost_tags_action]{get_lost_tags_action()}} to check the current the behaviour
 }
-}
-\author{
-Thibaut Jombart \email{thibaut@data.org}
 }

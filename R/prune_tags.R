@@ -12,8 +12,6 @@
 #'
 #' @noRd
 #'
-#' @author Thibaut Jombart \email{thibaut@@data.org}
-#'
 #' @return The function returns a `linelist` object.
 #'
 
@@ -51,8 +49,12 @@ prune_tags <- function(x, lost_action = c("error", "warning", "none")) {
       "The following tags have lost their variable:\n",
       lost_tags_txt
     )
-    if (lost_action == "warning") warning(msg)
-    if (lost_action == "error") stop(msg)
+    if (lost_action == "warning") {
+      warning(warningCondition(msg, class = "linelist_warning"))
+    }
+    if (lost_action == "error") {
+      stop(errorCondition(msg, class = "linelist_error"))
+    }
   }
 
   out
