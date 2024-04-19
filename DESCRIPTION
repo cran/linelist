@@ -1,6 +1,6 @@
 Package: linelist
 Title: Tagging and Validating Epidemiological Data
-Version: 1.1.0
+Version: 1.1.2
 Authors@R: 
     c(
       person(given = "Hugo",
@@ -37,11 +37,11 @@ Config/Needs/website: epiverse-trace/epiversetheme
 VignetteBuilder: knitr
 Language: en-GB
 NeedsCompilation: no
-Packaged: 2024-02-28 14:44:13 UTC; hugo
+Packaged: 2024-04-19 09:08:08 UTC; hugo
 Author: Hugo Gruson [aut, cre] (<https://orcid.org/0000-0002-4094-1476>),
   Thibaut Jombart [aut, ccp],
   Tim Taylor [ctb],
   Chris Hartgerink [rev] (<https://orcid.org/0000-0003-1050-6809>)
 Maintainer: Hugo Gruson <hugo@data.org>
 Repository: CRAN
-Date/Publication: 2024-02-28 17:30:02 UTC
+Date/Publication: 2024-04-19 12:52:35 UTC
