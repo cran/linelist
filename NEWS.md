@@ -1,3 +1,9 @@
+# linelist 1.1.3
+
+## Minor change
+
+* Convert `meta$Date` in CITATION to `Date` before attempting to run `format()` (@Bisaloo, #125)
+
 # linelist 1.1.2
 
 ## Minor change
