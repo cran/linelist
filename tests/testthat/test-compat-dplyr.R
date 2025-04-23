@@ -72,6 +72,12 @@ test_that("Compatibility with dplyr::mutate(.keep)", {
     expect_s3_class("linelist") %>%
     expect_snapshot_warning()
 
+  x %>%
+    dplyr::mutate(speed = as.integer(speed)) %>%
+    expect_s3_class("linelist") %>%
+    tags() %>%
+    expect_identical(tags(x))
+
 })
 
 test_that("Compatibility with dplyr::relocate()", {
@@ -142,6 +148,13 @@ test_that("Compatibility with dplyr::select()", {
     tags() %>%
     expect_identical(list(date_onset = "dist")) %>%
     expect_snapshot_warning()
+
+  # Even when renames happen
+  x %>%
+    dplyr::select(dist, vitesse = speed) %>%
+    expect_s3_class("linelist") %>%
+    tags() %>%
+    expect_identical(list(date_onset = "dist", date_outcome = "vitesse"))
 
 })
 

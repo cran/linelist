@@ -22,7 +22,8 @@
 #'
 #' @inheritParams set_tags
 #'
-#' @return If checks pass, a `linelist` object; otherwise issues an error.
+#' @return If checks pass, a `linelist` object (invisibly); otherwise issues an
+#' error.
 #'
 #' @seealso
 #' * [tags_types()] to change allowed types
@@ -31,11 +32,10 @@
 #'
 #' @examples
 #'
-#' if (require(outbreaks) && require(dplyr) && require(magrittr)) {
+#' if (require(outbreaks)) {
 #'
 #'   ## create a valid linelist
-#'   x <- measles_hagelloch_1861 %>%
-#'     tibble() %>%
+#'   x <- measles_hagelloch_1861 |>
 #'     make_linelist(
 #'       id = "case_ID",
 #'       date_onset = "date_of_prodrome",
@@ -48,8 +48,7 @@
 #'   validate_linelist(x)
 #'
 #'   ## create an invalid linelist - onset date is a factor
-#'   x <- measles_hagelloch_1861 %>%
-#'     tibble() %>%
+#'   x <- measles_hagelloch_1861 |>
 #'     make_linelist(
 #'       id = "case_ID",
 #'       date_onset = "gender",
@@ -68,5 +67,7 @@ validate_linelist <- function(x,
   validate_tags(x, allow_extra)
   validate_types(x, ref_types)
 
-  x
+  message("'", checkmate::vname(x), "' is a valid linelist object")
+
+  invisible(x)
 }

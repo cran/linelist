@@ -17,7 +17,8 @@ tags will trigger an error}
 by \code{\link[=tags_types]{tags_types()}}}
 }
 \value{
-If checks pass, a \code{linelist} object; otherwise issues an error.
+If checks pass, a \code{linelist} object (invisibly); otherwise issues an
+error.
 }
 \description{
 This function evaluates the validity of a \code{linelist} object by checking the
@@ -38,11 +39,10 @@ The following checks are performed:
 }
 \examples{
 
-if (require(outbreaks) && require(dplyr) && require(magrittr)) {
+if (require(outbreaks)) {
 
   ## create a valid linelist
-  x <- measles_hagelloch_1861 \%>\%
-    tibble() \%>\%
+  x <- measles_hagelloch_1861 |>
     make_linelist(
       id = "case_ID",
       date_onset = "date_of_prodrome",
@@ -55,8 +55,7 @@ if (require(outbreaks) && require(dplyr) && require(magrittr)) {
   validate_linelist(x)
 
   ## create an invalid linelist - onset date is a factor
-  x <- measles_hagelloch_1861 \%>\%
-    tibble() \%>\%
+  x <- measles_hagelloch_1861 |>
     make_linelist(
       id = "case_ID",
       date_onset = "gender",

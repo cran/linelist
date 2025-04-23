@@ -1,3 +1,54 @@
+# linelist 2.0.0
+
+## Breaking changes
+
+* Deprecated functions and arguments have been completely removed. The following
+  operations are no longer possible:
+  
+  * List of tags now needs to be spliced in `make_linelist()`:
+    ```r
+    my_tags <- list(
+      id = "case_ID",
+      date_onset = "date_of_prodrome",
+      age = "age",
+      gender = "gender"
+    )
+
+    # No longer possible
+    make_linelist(obj, my_tags)
+
+    # Instead slice list in dynamic dots
+    make_linelist(obj, !!!my_tags)
+    ```
+    
+  * `select_tags()`:
+  ```r
+  # No longer possible
+  x %>%
+    select_tags("age")
+
+  # Instead use
+  x %>%
+    select(has_tag("age")) %>%
+    tags_df()
+  ```
+
+  * `select.linelist()`. This change should be invisible to users since the 
+    parent method `select.data.frame()` will be used with the same effect.
+  
+  * `lost_tags_action()` as part of a pipeline is no longer possible:
+  ```
+  # No longer possible
+  make_linelist(cars, date_onset = "dist", date_outcome = "speed") |>
+    lost_tags_action("none") |>
+    dplyr::select(-dist)
+  
+  # Instead do
+  lost_tags_action("none") 
+  make_linelist(cars, date_onset = "dist", date_outcome = "speed") |>
+    dplyr::select(-dist)
+  ```
+
 # linelist 1.1.4
 
 ## Internal change
@@ -7,6 +58,7 @@
 ## New features
 
 * Default tag loss condition can now permanently be set via an environment variable `LINELIST_LOST_ACTION` (@Bisaloo, #126). The environment variable needs to be set before the R session is started due to the way R environment variables work. This allow users to set a stricter default behaviour for tag loss if they want to ensure tag loss never go unnoticed (#104).
+* `validate_linelist()` now returns invisibly, with a message, for valid linelist object (@Bisaloo, #146, based on a report from @avallecam in #143).
 
 # linelist 1.1.3
 

@@ -356,37 +356,37 @@ tidyverse. All dplyr verbs are thoroughly tested in the
 <span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a><span class="co">#&gt;     filter, lag</span></span>
 <span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a><span class="co">#&gt; The following objects are masked from &#39;package:base&#39;:</span></span>
 <span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a><span class="co">#&gt;     intersect, setdiff, setequal, union</span></span></code></pre></div>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a></span>
-<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;measles_hagelloch_1861&quot;</span>, <span class="at">package =</span> <span class="st">&quot;outbreaks&quot;</span>)</span>
-<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">make_linelist</span>(</span>
-<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a>  measles_hagelloch_1861,</span>
-<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a>  <span class="at">id =</span> <span class="st">&quot;case_ID&quot;</span>,</span>
-<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a>  <span class="at">date_onset =</span> <span class="st">&quot;date_of_prodrome&quot;</span>,</span>
-<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a>  <span class="at">age =</span> <span class="st">&quot;age&quot;</span>,</span>
-<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a>  <span class="at">gender =</span> <span class="st">&quot;gender&quot;</span></span>
-<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a>)</span>
-<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a></span>
-<span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a><span class="fu">head</span>(x)</span>
-<span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb2-14"><a href="#cb2-14" tabindex="-1"></a><span class="co">#&gt; // linelist object</span></span>
-<span id="cb2-15"><a href="#cb2-15" tabindex="-1"></a><span class="co">#&gt;   case_ID infector date_of_prodrome date_of_rash date_of_death age gender</span></span>
-<span id="cb2-16"><a href="#cb2-16" tabindex="-1"></a><span class="co">#&gt; 1       1       45       1861-11-21   1861-11-25          &lt;NA&gt;   7      f</span></span>
-<span id="cb2-17"><a href="#cb2-17" tabindex="-1"></a><span class="co">#&gt; 2       2       45       1861-11-23   1861-11-27          &lt;NA&gt;   6      f</span></span>
-<span id="cb2-18"><a href="#cb2-18" tabindex="-1"></a><span class="co">#&gt; 3       3      172       1861-11-28   1861-12-02          &lt;NA&gt;   4      f</span></span>
-<span id="cb2-19"><a href="#cb2-19" tabindex="-1"></a><span class="co">#&gt; 4       4      180       1861-11-27   1861-11-28          &lt;NA&gt;  13      m</span></span>
-<span id="cb2-20"><a href="#cb2-20" tabindex="-1"></a><span class="co">#&gt; 5       5       45       1861-11-22   1861-11-27          &lt;NA&gt;   8      f</span></span>
-<span id="cb2-21"><a href="#cb2-21" tabindex="-1"></a><span class="co">#&gt; 6       6      180       1861-11-26   1861-11-29          &lt;NA&gt;  12      m</span></span>
-<span id="cb2-22"><a href="#cb2-22" tabindex="-1"></a><span class="co">#&gt;   family_ID class complications x_loc y_loc</span></span>
-<span id="cb2-23"><a href="#cb2-23" tabindex="-1"></a><span class="co">#&gt; 1        41     1           yes 142.5 100.0</span></span>
-<span id="cb2-24"><a href="#cb2-24" tabindex="-1"></a><span class="co">#&gt; 2        41     1           yes 142.5 100.0</span></span>
-<span id="cb2-25"><a href="#cb2-25" tabindex="-1"></a><span class="co">#&gt; 3        41     0           yes 142.5 100.0</span></span>
-<span id="cb2-26"><a href="#cb2-26" tabindex="-1"></a><span class="co">#&gt; 4        61     2           yes 165.0 102.5</span></span>
-<span id="cb2-27"><a href="#cb2-27" tabindex="-1"></a><span class="co">#&gt; 5        42     1           yes 145.0 120.0</span></span>
-<span id="cb2-28"><a href="#cb2-28" tabindex="-1"></a><span class="co">#&gt; 6        42     2           yes 145.0 120.0</span></span>
-<span id="cb2-29"><a href="#cb2-29" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb2-30"><a href="#cb2-30" tabindex="-1"></a><span class="co">#&gt; // tags: id:case_ID, date_onset:date_of_prodrome, gender:gender, age:age</span></span></code></pre></div>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a><span class="co">#&gt;     intersect, setdiff, setequal, union</span></span>
+<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;measles_hagelloch_1861&quot;</span>, <span class="at">package =</span> <span class="st">&quot;outbreaks&quot;</span>)</span>
+<span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">make_linelist</span>(</span>
+<span id="cb1-15"><a href="#cb1-15" tabindex="-1"></a>  measles_hagelloch_1861,</span>
+<span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a>  <span class="at">id =</span> <span class="st">&quot;case_ID&quot;</span>,</span>
+<span id="cb1-17"><a href="#cb1-17" tabindex="-1"></a>  <span class="at">date_onset =</span> <span class="st">&quot;date_of_prodrome&quot;</span>,</span>
+<span id="cb1-18"><a href="#cb1-18" tabindex="-1"></a>  <span class="at">age =</span> <span class="st">&quot;age&quot;</span>,</span>
+<span id="cb1-19"><a href="#cb1-19" tabindex="-1"></a>  <span class="at">gender =</span> <span class="st">&quot;gender&quot;</span></span>
+<span id="cb1-20"><a href="#cb1-20" tabindex="-1"></a>)</span>
+<span id="cb1-21"><a href="#cb1-21" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="#cb1-22" tabindex="-1"></a><span class="fu">head</span>(x)</span>
+<span id="cb1-23"><a href="#cb1-23" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb1-24"><a href="#cb1-24" tabindex="-1"></a><span class="co">#&gt; // linelist object</span></span>
+<span id="cb1-25"><a href="#cb1-25" tabindex="-1"></a><span class="co">#&gt;   case_ID infector date_of_prodrome date_of_rash date_of_death age gender</span></span>
+<span id="cb1-26"><a href="#cb1-26" tabindex="-1"></a><span class="co">#&gt; 1       1       45       1861-11-21   1861-11-25          &lt;NA&gt;   7      f</span></span>
+<span id="cb1-27"><a href="#cb1-27" tabindex="-1"></a><span class="co">#&gt; 2       2       45       1861-11-23   1861-11-27          &lt;NA&gt;   6      f</span></span>
+<span id="cb1-28"><a href="#cb1-28" tabindex="-1"></a><span class="co">#&gt; 3       3      172       1861-11-28   1861-12-02          &lt;NA&gt;   4      f</span></span>
+<span id="cb1-29"><a href="#cb1-29" tabindex="-1"></a><span class="co">#&gt; 4       4      180       1861-11-27   1861-11-28          &lt;NA&gt;  13      m</span></span>
+<span id="cb1-30"><a href="#cb1-30" tabindex="-1"></a><span class="co">#&gt; 5       5       45       1861-11-22   1861-11-27          &lt;NA&gt;   8      f</span></span>
+<span id="cb1-31"><a href="#cb1-31" tabindex="-1"></a><span class="co">#&gt; 6       6      180       1861-11-26   1861-11-29          &lt;NA&gt;  12      m</span></span>
+<span id="cb1-32"><a href="#cb1-32" tabindex="-1"></a><span class="co">#&gt;   family_ID class complications x_loc y_loc</span></span>
+<span id="cb1-33"><a href="#cb1-33" tabindex="-1"></a><span class="co">#&gt; 1        41     1           yes 142.5 100.0</span></span>
+<span id="cb1-34"><a href="#cb1-34" tabindex="-1"></a><span class="co">#&gt; 2        41     1           yes 142.5 100.0</span></span>
+<span id="cb1-35"><a href="#cb1-35" tabindex="-1"></a><span class="co">#&gt; 3        41     0           yes 142.5 100.0</span></span>
+<span id="cb1-36"><a href="#cb1-36" tabindex="-1"></a><span class="co">#&gt; 4        61     2           yes 165.0 102.5</span></span>
+<span id="cb1-37"><a href="#cb1-37" tabindex="-1"></a><span class="co">#&gt; 5        42     1           yes 145.0 120.0</span></span>
+<span id="cb1-38"><a href="#cb1-38" tabindex="-1"></a><span class="co">#&gt; 6        42     2           yes 145.0 120.0</span></span>
+<span id="cb1-39"><a href="#cb1-39" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb1-40"><a href="#cb1-40" tabindex="-1"></a><span class="co">#&gt; // tags: id:case_ID, date_onset:date_of_prodrome, gender:gender, age:age</span></span></code></pre></div>
 <div id="verbs-operating-on-rows" class="section level2">
 <h2>Verbs operating on rows</h2>
 <p>linelist does not modify anything regarding the behaviour for
@@ -396,8 +396,32 @@ that linelist does not produce any errors, warnings or messages and its
 tags are conserved through dplyr operations on rows.</p>
 <div id="dplyrarrange" class="section level3">
 <h3><code>dplyr::arrange()</code> ✅</h3>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>x <span class="sc">%&gt;%</span></span>
-<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>  <span class="fu">arrange</span>(case_ID) <span class="sc">%&gt;%</span></span>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>x <span class="sc">|&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>  <span class="fu">arrange</span>(case_ID) <span class="sc">|&gt;</span></span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>  <span class="fu">head</span>()</span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a><span class="co">#&gt; // linelist object</span></span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a><span class="co">#&gt;   case_ID infector date_of_prodrome date_of_rash date_of_death age gender</span></span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a><span class="co">#&gt; 1       1       45       1861-11-21   1861-11-25          &lt;NA&gt;   7      f</span></span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a><span class="co">#&gt; 2       2       45       1861-11-23   1861-11-27          &lt;NA&gt;   6      f</span></span>
+<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a><span class="co">#&gt; 3       3      172       1861-11-28   1861-12-02          &lt;NA&gt;   4      f</span></span>
+<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a><span class="co">#&gt; 4       4      180       1861-11-27   1861-11-28          &lt;NA&gt;  13      m</span></span>
+<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a><span class="co">#&gt; 5       5       45       1861-11-22   1861-11-27          &lt;NA&gt;   8      f</span></span>
+<span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a><span class="co">#&gt; 6       6      180       1861-11-26   1861-11-29          &lt;NA&gt;  12      m</span></span>
+<span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a><span class="co">#&gt;   family_ID class complications x_loc y_loc</span></span>
+<span id="cb2-14"><a href="#cb2-14" tabindex="-1"></a><span class="co">#&gt; 1        41     1           yes 142.5 100.0</span></span>
+<span id="cb2-15"><a href="#cb2-15" tabindex="-1"></a><span class="co">#&gt; 2        41     1           yes 142.5 100.0</span></span>
+<span id="cb2-16"><a href="#cb2-16" tabindex="-1"></a><span class="co">#&gt; 3        41     0           yes 142.5 100.0</span></span>
+<span id="cb2-17"><a href="#cb2-17" tabindex="-1"></a><span class="co">#&gt; 4        61     2           yes 165.0 102.5</span></span>
+<span id="cb2-18"><a href="#cb2-18" tabindex="-1"></a><span class="co">#&gt; 5        42     1           yes 145.0 120.0</span></span>
+<span id="cb2-19"><a href="#cb2-19" tabindex="-1"></a><span class="co">#&gt; 6        42     2           yes 145.0 120.0</span></span>
+<span id="cb2-20"><a href="#cb2-20" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb2-21"><a href="#cb2-21" tabindex="-1"></a><span class="co">#&gt; // tags: id:case_ID, date_onset:date_of_prodrome, gender:gender, age:age</span></span></code></pre></div>
+</div>
+<div id="dplyrdistinct" class="section level3">
+<h3><code>dplyr:distinct()</code> ✅</h3>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>x <span class="sc">|&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>  <span class="fu">distinct</span>() <span class="sc">|&gt;</span></span>
 <span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>  <span class="fu">head</span>()</span>
 <span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a><span class="co">#&gt; // linelist object</span></span>
@@ -418,175 +442,151 @@ tags are conserved through dplyr operations on rows.</p>
 <span id="cb3-20"><a href="#cb3-20" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb3-21"><a href="#cb3-21" tabindex="-1"></a><span class="co">#&gt; // tags: id:case_ID, date_onset:date_of_prodrome, gender:gender, age:age</span></span></code></pre></div>
 </div>
-<div id="dplyrdistinct" class="section level3">
-<h3><code>dplyr:distinct()</code> ✅</h3>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>x <span class="sc">%&gt;%</span></span>
-<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>  <span class="fu">distinct</span>() <span class="sc">%&gt;%</span></span>
+<div id="dplyrfilter" class="section level3">
+<h3><code>dplyr::filter()</code> ✅</h3>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>x <span class="sc">|&gt;</span></span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>  <span class="fu">filter</span>(age <span class="sc">&gt;=</span> <span class="dv">10</span>) <span class="sc">|&gt;</span></span>
 <span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>  <span class="fu">head</span>()</span>
 <span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a><span class="co">#&gt; // linelist object</span></span>
 <span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a><span class="co">#&gt;   case_ID infector date_of_prodrome date_of_rash date_of_death age gender</span></span>
-<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a><span class="co">#&gt; 1       1       45       1861-11-21   1861-11-25          &lt;NA&gt;   7      f</span></span>
-<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a><span class="co">#&gt; 2       2       45       1861-11-23   1861-11-27          &lt;NA&gt;   6      f</span></span>
-<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a><span class="co">#&gt; 3       3      172       1861-11-28   1861-12-02          &lt;NA&gt;   4      f</span></span>
-<span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a><span class="co">#&gt; 4       4      180       1861-11-27   1861-11-28          &lt;NA&gt;  13      m</span></span>
-<span id="cb4-11"><a href="#cb4-11" tabindex="-1"></a><span class="co">#&gt; 5       5       45       1861-11-22   1861-11-27          &lt;NA&gt;   8      f</span></span>
-<span id="cb4-12"><a href="#cb4-12" tabindex="-1"></a><span class="co">#&gt; 6       6      180       1861-11-26   1861-11-29          &lt;NA&gt;  12      m</span></span>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a><span class="co">#&gt; 1       4      180       1861-11-27   1861-11-28          &lt;NA&gt;  13      m</span></span>
+<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a><span class="co">#&gt; 2       6      180       1861-11-26   1861-11-29          &lt;NA&gt;  12      m</span></span>
+<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a><span class="co">#&gt; 3       8       45       1861-11-21   1861-11-26          &lt;NA&gt;  10      m</span></span>
+<span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a><span class="co">#&gt; 4       9      182       1861-11-26   1861-11-30          &lt;NA&gt;  13      m</span></span>
+<span id="cb4-11"><a href="#cb4-11" tabindex="-1"></a><span class="co">#&gt; 5      11      182       1861-11-25   1861-11-30          &lt;NA&gt;  11      f</span></span>
+<span id="cb4-12"><a href="#cb4-12" tabindex="-1"></a><span class="co">#&gt; 6      13       12       1861-11-30   1861-12-05          &lt;NA&gt;  13      m</span></span>
 <span id="cb4-13"><a href="#cb4-13" tabindex="-1"></a><span class="co">#&gt;   family_ID class complications x_loc y_loc</span></span>
-<span id="cb4-14"><a href="#cb4-14" tabindex="-1"></a><span class="co">#&gt; 1        41     1           yes 142.5 100.0</span></span>
-<span id="cb4-15"><a href="#cb4-15" tabindex="-1"></a><span class="co">#&gt; 2        41     1           yes 142.5 100.0</span></span>
-<span id="cb4-16"><a href="#cb4-16" tabindex="-1"></a><span class="co">#&gt; 3        41     0           yes 142.5 100.0</span></span>
-<span id="cb4-17"><a href="#cb4-17" tabindex="-1"></a><span class="co">#&gt; 4        61     2           yes 165.0 102.5</span></span>
-<span id="cb4-18"><a href="#cb4-18" tabindex="-1"></a><span class="co">#&gt; 5        42     1           yes 145.0 120.0</span></span>
-<span id="cb4-19"><a href="#cb4-19" tabindex="-1"></a><span class="co">#&gt; 6        42     2           yes 145.0 120.0</span></span>
+<span id="cb4-14"><a href="#cb4-14" tabindex="-1"></a><span class="co">#&gt; 1        61     2           yes 165.0 102.5</span></span>
+<span id="cb4-15"><a href="#cb4-15" tabindex="-1"></a><span class="co">#&gt; 2        42     2           yes 145.0 120.0</span></span>
+<span id="cb4-16"><a href="#cb4-16" tabindex="-1"></a><span class="co">#&gt; 3        44     1           yes  97.5 155.0</span></span>
+<span id="cb4-17"><a href="#cb4-17" tabindex="-1"></a><span class="co">#&gt; 4        44     2           yes  97.5 155.0</span></span>
+<span id="cb4-18"><a href="#cb4-18" tabindex="-1"></a><span class="co">#&gt; 5        27     2           yes 270.0 135.0</span></span>
+<span id="cb4-19"><a href="#cb4-19" tabindex="-1"></a><span class="co">#&gt; 6        32     2           yes 195.0  27.5</span></span>
 <span id="cb4-20"><a href="#cb4-20" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb4-21"><a href="#cb4-21" tabindex="-1"></a><span class="co">#&gt; // tags: id:case_ID, date_onset:date_of_prodrome, gender:gender, age:age</span></span></code></pre></div>
 </div>
-<div id="dplyrfilter" class="section level3">
-<h3><code>dplyr::filter()</code> ✅</h3>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>x <span class="sc">%&gt;%</span></span>
-<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>  <span class="fu">filter</span>(age <span class="sc">&gt;=</span> <span class="dv">10</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>  <span class="fu">head</span>()</span>
-<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a><span class="co">#&gt; // linelist object</span></span>
-<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a><span class="co">#&gt;   case_ID infector date_of_prodrome date_of_rash date_of_death age gender</span></span>
-<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a><span class="co">#&gt; 1       4      180       1861-11-27   1861-11-28          &lt;NA&gt;  13      m</span></span>
-<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a><span class="co">#&gt; 2       6      180       1861-11-26   1861-11-29          &lt;NA&gt;  12      m</span></span>
-<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a><span class="co">#&gt; 3       8       45       1861-11-21   1861-11-26          &lt;NA&gt;  10      m</span></span>
-<span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a><span class="co">#&gt; 4       9      182       1861-11-26   1861-11-30          &lt;NA&gt;  13      m</span></span>
-<span id="cb5-11"><a href="#cb5-11" tabindex="-1"></a><span class="co">#&gt; 5      11      182       1861-11-25   1861-11-30          &lt;NA&gt;  11      f</span></span>
-<span id="cb5-12"><a href="#cb5-12" tabindex="-1"></a><span class="co">#&gt; 6      13       12       1861-11-30   1861-12-05          &lt;NA&gt;  13      m</span></span>
-<span id="cb5-13"><a href="#cb5-13" tabindex="-1"></a><span class="co">#&gt;   family_ID class complications x_loc y_loc</span></span>
-<span id="cb5-14"><a href="#cb5-14" tabindex="-1"></a><span class="co">#&gt; 1        61     2           yes 165.0 102.5</span></span>
-<span id="cb5-15"><a href="#cb5-15" tabindex="-1"></a><span class="co">#&gt; 2        42     2           yes 145.0 120.0</span></span>
-<span id="cb5-16"><a href="#cb5-16" tabindex="-1"></a><span class="co">#&gt; 3        44     1           yes  97.5 155.0</span></span>
-<span id="cb5-17"><a href="#cb5-17" tabindex="-1"></a><span class="co">#&gt; 4        44     2           yes  97.5 155.0</span></span>
-<span id="cb5-18"><a href="#cb5-18" tabindex="-1"></a><span class="co">#&gt; 5        27     2           yes 270.0 135.0</span></span>
-<span id="cb5-19"><a href="#cb5-19" tabindex="-1"></a><span class="co">#&gt; 6        32     2           yes 195.0  27.5</span></span>
-<span id="cb5-20"><a href="#cb5-20" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb5-21"><a href="#cb5-21" tabindex="-1"></a><span class="co">#&gt; // tags: id:case_ID, date_onset:date_of_prodrome, gender:gender, age:age</span></span></code></pre></div>
-</div>
 <div id="dplyrslice" class="section level3">
 <h3><code>dplyr::slice()</code> ✅</h3>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>x <span class="sc">%&gt;%</span></span>
-<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">5</span><span class="sc">:</span><span class="dv">10</span>)</span>
-<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a><span class="co">#&gt; // linelist object</span></span>
-<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a><span class="co">#&gt;   case_ID infector date_of_prodrome date_of_rash date_of_death age gender</span></span>
-<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a><span class="co">#&gt; 1       5       45       1861-11-22   1861-11-27          &lt;NA&gt;   8      f</span></span>
-<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a><span class="co">#&gt; 2       6      180       1861-11-26   1861-11-29          &lt;NA&gt;  12      m</span></span>
-<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a><span class="co">#&gt; 3       7       42       1861-11-24   1861-11-28          &lt;NA&gt;   6      m</span></span>
-<span id="cb6-9"><a href="#cb6-9" tabindex="-1"></a><span class="co">#&gt; 4       8       45       1861-11-21   1861-11-26          &lt;NA&gt;  10      m</span></span>
-<span id="cb6-10"><a href="#cb6-10" tabindex="-1"></a><span class="co">#&gt; 5       9      182       1861-11-26   1861-11-30          &lt;NA&gt;  13      m</span></span>
-<span id="cb6-11"><a href="#cb6-11" tabindex="-1"></a><span class="co">#&gt; 6      10       45       1861-11-21   1861-11-25          &lt;NA&gt;   7      f</span></span>
-<span id="cb6-12"><a href="#cb6-12" tabindex="-1"></a><span class="co">#&gt;   family_ID class complications x_loc y_loc</span></span>
-<span id="cb6-13"><a href="#cb6-13" tabindex="-1"></a><span class="co">#&gt; 1        42     1           yes 145.0 120.0</span></span>
-<span id="cb6-14"><a href="#cb6-14" tabindex="-1"></a><span class="co">#&gt; 2        42     2           yes 145.0 120.0</span></span>
-<span id="cb6-15"><a href="#cb6-15" tabindex="-1"></a><span class="co">#&gt; 3        26     0           yes 272.5 147.5</span></span>
-<span id="cb6-16"><a href="#cb6-16" tabindex="-1"></a><span class="co">#&gt; 4        44     1           yes  97.5 155.0</span></span>
-<span id="cb6-17"><a href="#cb6-17" tabindex="-1"></a><span class="co">#&gt; 5        44     2           yes  97.5 155.0</span></span>
-<span id="cb6-18"><a href="#cb6-18" tabindex="-1"></a><span class="co">#&gt; 6        29     1           yes 240.0  75.0</span></span>
-<span id="cb6-19"><a href="#cb6-19" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb6-20"><a href="#cb6-20" tabindex="-1"></a><span class="co">#&gt; // tags: id:case_ID, date_onset:date_of_prodrome, gender:gender, age:age</span></span></code></pre></div>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a></span>
-<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>x <span class="sc">%&gt;%</span></span>
-<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">5</span>)</span>
-<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a><span class="co">#&gt; // linelist object</span></span>
-<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a><span class="co">#&gt;   case_ID infector date_of_prodrome date_of_rash date_of_death age gender</span></span>
-<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a><span class="co">#&gt; 1       1       45       1861-11-21   1861-11-25          &lt;NA&gt;   7      f</span></span>
-<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a><span class="co">#&gt; 2       2       45       1861-11-23   1861-11-27          &lt;NA&gt;   6      f</span></span>
-<span id="cb7-9"><a href="#cb7-9" tabindex="-1"></a><span class="co">#&gt; 3       3      172       1861-11-28   1861-12-02          &lt;NA&gt;   4      f</span></span>
-<span id="cb7-10"><a href="#cb7-10" tabindex="-1"></a><span class="co">#&gt; 4       4      180       1861-11-27   1861-11-28          &lt;NA&gt;  13      m</span></span>
-<span id="cb7-11"><a href="#cb7-11" tabindex="-1"></a><span class="co">#&gt; 5       5       45       1861-11-22   1861-11-27          &lt;NA&gt;   8      f</span></span>
-<span id="cb7-12"><a href="#cb7-12" tabindex="-1"></a><span class="co">#&gt;   family_ID class complications x_loc y_loc</span></span>
-<span id="cb7-13"><a href="#cb7-13" tabindex="-1"></a><span class="co">#&gt; 1        41     1           yes 142.5 100.0</span></span>
-<span id="cb7-14"><a href="#cb7-14" tabindex="-1"></a><span class="co">#&gt; 2        41     1           yes 142.5 100.0</span></span>
-<span id="cb7-15"><a href="#cb7-15" tabindex="-1"></a><span class="co">#&gt; 3        41     0           yes 142.5 100.0</span></span>
-<span id="cb7-16"><a href="#cb7-16" tabindex="-1"></a><span class="co">#&gt; 4        61     2           yes 165.0 102.5</span></span>
-<span id="cb7-17"><a href="#cb7-17" tabindex="-1"></a><span class="co">#&gt; 5        42     1           yes 145.0 120.0</span></span>
-<span id="cb7-18"><a href="#cb7-18" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb7-19"><a href="#cb7-19" tabindex="-1"></a><span class="co">#&gt; // tags: id:case_ID, date_onset:date_of_prodrome, gender:gender, age:age</span></span></code></pre></div>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a></span>
-<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>x <span class="sc">%&gt;%</span></span>
-<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a>  <span class="fu">slice_tail</span>(<span class="at">n =</span> <span class="dv">5</span>)</span>
-<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a><span class="co">#&gt; // linelist object</span></span>
-<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a><span class="co">#&gt;   case_ID infector date_of_prodrome date_of_rash date_of_death age gender</span></span>
-<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a><span class="co">#&gt; 1     184       NA       1861-10-30   1861-11-06          &lt;NA&gt;  13   &lt;NA&gt;</span></span>
-<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a><span class="co">#&gt; 2     185       82       1861-12-03   1861-12-07          &lt;NA&gt;   3      m</span></span>
-<span id="cb8-9"><a href="#cb8-9" tabindex="-1"></a><span class="co">#&gt; 3     186       45       1861-11-22   1861-11-26          &lt;NA&gt;   6   &lt;NA&gt;</span></span>
-<span id="cb8-10"><a href="#cb8-10" tabindex="-1"></a><span class="co">#&gt; 4     187       82       1861-12-07   1861-12-11          &lt;NA&gt;   0      m</span></span>
-<span id="cb8-11"><a href="#cb8-11" tabindex="-1"></a><span class="co">#&gt; 5     188      175       1861-11-23   1861-11-27          &lt;NA&gt;   1   &lt;NA&gt;</span></span>
-<span id="cb8-12"><a href="#cb8-12" tabindex="-1"></a><span class="co">#&gt;   family_ID class complications x_loc y_loc</span></span>
-<span id="cb8-13"><a href="#cb8-13" tabindex="-1"></a><span class="co">#&gt; 1        51     2           yes 182.5 200.0</span></span>
-<span id="cb8-14"><a href="#cb8-14" tabindex="-1"></a><span class="co">#&gt; 2        21     0           yes 205.0 182.5</span></span>
-<span id="cb8-15"><a href="#cb8-15" tabindex="-1"></a><span class="co">#&gt; 3        57     0           yes 212.5  90.0</span></span>
-<span id="cb8-16"><a href="#cb8-16" tabindex="-1"></a><span class="co">#&gt; 4        21     0           yes 205.0 182.5</span></span>
-<span id="cb8-17"><a href="#cb8-17" tabindex="-1"></a><span class="co">#&gt; 5        57     0           yes 212.5  90.0</span></span>
-<span id="cb8-18"><a href="#cb8-18" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb8-19"><a href="#cb8-19" tabindex="-1"></a><span class="co">#&gt; // tags: id:case_ID, date_onset:date_of_prodrome, gender:gender, age:age</span></span></code></pre></div>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a></span>
-<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a>x <span class="sc">%&gt;%</span></span>
-<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a>  <span class="fu">slice_min</span>(age, <span class="at">n =</span> <span class="dv">3</span>)</span>
-<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a><span class="co">#&gt; // linelist object</span></span>
-<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a><span class="co">#&gt;   case_ID infector date_of_prodrome date_of_rash date_of_death age gender</span></span>
-<span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a><span class="co">#&gt; 1     113       31       1861-12-04   1861-12-07          &lt;NA&gt;   0      f</span></span>
-<span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a><span class="co">#&gt; 2     119      116       1861-12-01   1861-12-08          &lt;NA&gt;   0      f</span></span>
-<span id="cb9-9"><a href="#cb9-9" tabindex="-1"></a><span class="co">#&gt; 3     147       18       1861-12-03   1861-12-07          &lt;NA&gt;   0      f</span></span>
-<span id="cb9-10"><a href="#cb9-10" tabindex="-1"></a><span class="co">#&gt; 4     150      148       1861-12-11   1861-12-15          &lt;NA&gt;   0      m</span></span>
-<span id="cb9-11"><a href="#cb9-11" tabindex="-1"></a><span class="co">#&gt; 5     160       68       1861-12-12   1861-12-13          &lt;NA&gt;   0      f</span></span>
-<span id="cb9-12"><a href="#cb9-12" tabindex="-1"></a><span class="co">#&gt; 6     167      110       1861-12-14   1861-12-18          &lt;NA&gt;   0      m</span></span>
-<span id="cb9-13"><a href="#cb9-13" tabindex="-1"></a><span class="co">#&gt; 7     171      169       1861-12-15   1861-12-17          &lt;NA&gt;   0      m</span></span>
-<span id="cb9-14"><a href="#cb9-14" tabindex="-1"></a><span class="co">#&gt; 8     176      146       1861-12-11   1861-12-15          &lt;NA&gt;   0   &lt;NA&gt;</span></span>
-<span id="cb9-15"><a href="#cb9-15" tabindex="-1"></a><span class="co">#&gt; 9     187       82       1861-12-07   1861-12-11          &lt;NA&gt;   0      m</span></span>
-<span id="cb9-16"><a href="#cb9-16" tabindex="-1"></a><span class="co">#&gt;   family_ID class complications x_loc y_loc</span></span>
-<span id="cb9-17"><a href="#cb9-17" tabindex="-1"></a><span class="co">#&gt; 1        15     0           yes 125.0 187.5</span></span>
-<span id="cb9-18"><a href="#cb9-18" tabindex="-1"></a><span class="co">#&gt; 2        40     0           yes 127.5 147.5</span></span>
-<span id="cb9-19"><a href="#cb9-19" tabindex="-1"></a><span class="co">#&gt; 3        13     0           yes  72.5 152.5</span></span>
-<span id="cb9-20"><a href="#cb9-20" tabindex="-1"></a><span class="co">#&gt; 4        19     0           yes 255.0 230.0</span></span>
-<span id="cb9-21"><a href="#cb9-21" tabindex="-1"></a><span class="co">#&gt; 5        16     0           yes 165.0 192.5</span></span>
-<span id="cb9-22"><a href="#cb9-22" tabindex="-1"></a><span class="co">#&gt; 6        49     0           yes 175.0 140.0</span></span>
-<span id="cb9-23"><a href="#cb9-23" tabindex="-1"></a><span class="co">#&gt; 7        38     0           yes 132.5  80.0</span></span>
-<span id="cb9-24"><a href="#cb9-24" tabindex="-1"></a><span class="co">#&gt; 8        64     0           yes  72.5 152.5</span></span>
-<span id="cb9-25"><a href="#cb9-25" tabindex="-1"></a><span class="co">#&gt; 9        21     0           yes 205.0 182.5</span></span>
-<span id="cb9-26"><a href="#cb9-26" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb9-27"><a href="#cb9-27" tabindex="-1"></a><span class="co">#&gt; // tags: id:case_ID, date_onset:date_of_prodrome, gender:gender, age:age</span></span></code></pre></div>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a></span>
-<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a>x <span class="sc">%&gt;%</span></span>
-<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a>  <span class="fu">slice_max</span>(age, <span class="at">n =</span> <span class="dv">3</span>)</span>
-<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a><span class="co">#&gt; // linelist object</span></span>
-<span id="cb10-6"><a href="#cb10-6" tabindex="-1"></a><span class="co">#&gt;   case_ID infector date_of_prodrome date_of_rash date_of_death age gender</span></span>
-<span id="cb10-7"><a href="#cb10-7" tabindex="-1"></a><span class="co">#&gt; 1      16      181       1861-11-21   1861-11-25          &lt;NA&gt;  15      f</span></span>
-<span id="cb10-8"><a href="#cb10-8" tabindex="-1"></a><span class="co">#&gt; 2      62       11       1861-12-02   1861-12-06          &lt;NA&gt;  14      m</span></span>
-<span id="cb10-9"><a href="#cb10-9" tabindex="-1"></a><span class="co">#&gt; 3     117      116       1861-12-02   1861-12-06          &lt;NA&gt;  14      m</span></span>
-<span id="cb10-10"><a href="#cb10-10" tabindex="-1"></a><span class="co">#&gt;   family_ID class complications x_loc y_loc</span></span>
-<span id="cb10-11"><a href="#cb10-11" tabindex="-1"></a><span class="co">#&gt; 1        43     2           yes 172.5 172.5</span></span>
-<span id="cb10-12"><a href="#cb10-12" tabindex="-1"></a><span class="co">#&gt; 2         8     2           yes 270.0 102.5</span></span>
-<span id="cb10-13"><a href="#cb10-13" tabindex="-1"></a><span class="co">#&gt; 3        40     2           yes 127.5 147.5</span></span>
-<span id="cb10-14"><a href="#cb10-14" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb10-15"><a href="#cb10-15" tabindex="-1"></a><span class="co">#&gt; // tags: id:case_ID, date_onset:date_of_prodrome, gender:gender, age:age</span></span></code></pre></div>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a></span>
-<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a>x <span class="sc">%&gt;%</span></span>
-<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a>  <span class="fu">slice_sample</span>(<span class="at">n =</span> <span class="dv">5</span>)</span>
-<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a><span class="co">#&gt; // linelist object</span></span>
-<span id="cb11-6"><a href="#cb11-6" tabindex="-1"></a><span class="co">#&gt;   case_ID infector date_of_prodrome date_of_rash date_of_death age gender</span></span>
-<span id="cb11-7"><a href="#cb11-7" tabindex="-1"></a><span class="co">#&gt; 1     110       18       1861-12-04   1861-12-06          &lt;NA&gt;   3      m</span></span>
-<span id="cb11-8"><a href="#cb11-8" tabindex="-1"></a><span class="co">#&gt; 2      10       45       1861-11-21   1861-11-25          &lt;NA&gt;   7      f</span></span>
-<span id="cb11-9"><a href="#cb11-9" tabindex="-1"></a><span class="co">#&gt; 3     180      177       1861-11-17   1861-11-21          &lt;NA&gt;  10      m</span></span>
-<span id="cb11-10"><a href="#cb11-10" tabindex="-1"></a><span class="co">#&gt; 4      53       17       1861-11-30   1861-12-04          &lt;NA&gt;   6      m</span></span>
-<span id="cb11-11"><a href="#cb11-11" tabindex="-1"></a><span class="co">#&gt; 5     105       74       1861-12-05   1861-12-08          &lt;NA&gt;   3      m</span></span>
-<span id="cb11-12"><a href="#cb11-12" tabindex="-1"></a><span class="co">#&gt;   family_ID class complications x_loc y_loc</span></span>
-<span id="cb11-13"><a href="#cb11-13" tabindex="-1"></a><span class="co">#&gt; 1        49     0           yes 175.0 140.0</span></span>
-<span id="cb11-14"><a href="#cb11-14" tabindex="-1"></a><span class="co">#&gt; 2        29     1           yes 240.0  75.0</span></span>
-<span id="cb11-15"><a href="#cb11-15" tabindex="-1"></a><span class="co">#&gt; 3        17     2           yes 182.5 200.0</span></span>
-<span id="cb11-16"><a href="#cb11-16" tabindex="-1"></a><span class="co">#&gt; 4        43     0           yes 172.5 172.5</span></span>
-<span id="cb11-17"><a href="#cb11-17" tabindex="-1"></a><span class="co">#&gt; 5        23     0           yes 257.5 195.0</span></span>
-<span id="cb11-18"><a href="#cb11-18" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb11-19"><a href="#cb11-19" tabindex="-1"></a><span class="co">#&gt; // tags: id:case_ID, date_onset:date_of_prodrome, gender:gender, age:age</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>x <span class="sc">|&gt;</span></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">5</span><span class="sc">:</span><span class="dv">10</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="co">#&gt; // linelist object</span></span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a><span class="co">#&gt;   case_ID infector date_of_prodrome date_of_rash date_of_death age gender</span></span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a><span class="co">#&gt; 1       5       45       1861-11-22   1861-11-27          &lt;NA&gt;   8      f</span></span>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a><span class="co">#&gt; 2       6      180       1861-11-26   1861-11-29          &lt;NA&gt;  12      m</span></span>
+<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a><span class="co">#&gt; 3       7       42       1861-11-24   1861-11-28          &lt;NA&gt;   6      m</span></span>
+<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a><span class="co">#&gt; 4       8       45       1861-11-21   1861-11-26          &lt;NA&gt;  10      m</span></span>
+<span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a><span class="co">#&gt; 5       9      182       1861-11-26   1861-11-30          &lt;NA&gt;  13      m</span></span>
+<span id="cb5-11"><a href="#cb5-11" tabindex="-1"></a><span class="co">#&gt; 6      10       45       1861-11-21   1861-11-25          &lt;NA&gt;   7      f</span></span>
+<span id="cb5-12"><a href="#cb5-12" tabindex="-1"></a><span class="co">#&gt;   family_ID class complications x_loc y_loc</span></span>
+<span id="cb5-13"><a href="#cb5-13" tabindex="-1"></a><span class="co">#&gt; 1        42     1           yes 145.0 120.0</span></span>
+<span id="cb5-14"><a href="#cb5-14" tabindex="-1"></a><span class="co">#&gt; 2        42     2           yes 145.0 120.0</span></span>
+<span id="cb5-15"><a href="#cb5-15" tabindex="-1"></a><span class="co">#&gt; 3        26     0           yes 272.5 147.5</span></span>
+<span id="cb5-16"><a href="#cb5-16" tabindex="-1"></a><span class="co">#&gt; 4        44     1           yes  97.5 155.0</span></span>
+<span id="cb5-17"><a href="#cb5-17" tabindex="-1"></a><span class="co">#&gt; 5        44     2           yes  97.5 155.0</span></span>
+<span id="cb5-18"><a href="#cb5-18" tabindex="-1"></a><span class="co">#&gt; 6        29     1           yes 240.0  75.0</span></span>
+<span id="cb5-19"><a href="#cb5-19" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb5-20"><a href="#cb5-20" tabindex="-1"></a><span class="co">#&gt; // tags: id:case_ID, date_onset:date_of_prodrome, gender:gender, age:age</span></span>
+<span id="cb5-21"><a href="#cb5-21" tabindex="-1"></a></span>
+<span id="cb5-22"><a href="#cb5-22" tabindex="-1"></a>x <span class="sc">|&gt;</span></span>
+<span id="cb5-23"><a href="#cb5-23" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">5</span>)</span>
+<span id="cb5-24"><a href="#cb5-24" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb5-25"><a href="#cb5-25" tabindex="-1"></a><span class="co">#&gt; // linelist object</span></span>
+<span id="cb5-26"><a href="#cb5-26" tabindex="-1"></a><span class="co">#&gt;   case_ID infector date_of_prodrome date_of_rash date_of_death age gender</span></span>
+<span id="cb5-27"><a href="#cb5-27" tabindex="-1"></a><span class="co">#&gt; 1       1       45       1861-11-21   1861-11-25          &lt;NA&gt;   7      f</span></span>
+<span id="cb5-28"><a href="#cb5-28" tabindex="-1"></a><span class="co">#&gt; 2       2       45       1861-11-23   1861-11-27          &lt;NA&gt;   6      f</span></span>
+<span id="cb5-29"><a href="#cb5-29" tabindex="-1"></a><span class="co">#&gt; 3       3      172       1861-11-28   1861-12-02          &lt;NA&gt;   4      f</span></span>
+<span id="cb5-30"><a href="#cb5-30" tabindex="-1"></a><span class="co">#&gt; 4       4      180       1861-11-27   1861-11-28          &lt;NA&gt;  13      m</span></span>
+<span id="cb5-31"><a href="#cb5-31" tabindex="-1"></a><span class="co">#&gt; 5       5       45       1861-11-22   1861-11-27          &lt;NA&gt;   8      f</span></span>
+<span id="cb5-32"><a href="#cb5-32" tabindex="-1"></a><span class="co">#&gt;   family_ID class complications x_loc y_loc</span></span>
+<span id="cb5-33"><a href="#cb5-33" tabindex="-1"></a><span class="co">#&gt; 1        41     1           yes 142.5 100.0</span></span>
+<span id="cb5-34"><a href="#cb5-34" tabindex="-1"></a><span class="co">#&gt; 2        41     1           yes 142.5 100.0</span></span>
+<span id="cb5-35"><a href="#cb5-35" tabindex="-1"></a><span class="co">#&gt; 3        41     0           yes 142.5 100.0</span></span>
+<span id="cb5-36"><a href="#cb5-36" tabindex="-1"></a><span class="co">#&gt; 4        61     2           yes 165.0 102.5</span></span>
+<span id="cb5-37"><a href="#cb5-37" tabindex="-1"></a><span class="co">#&gt; 5        42     1           yes 145.0 120.0</span></span>
+<span id="cb5-38"><a href="#cb5-38" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb5-39"><a href="#cb5-39" tabindex="-1"></a><span class="co">#&gt; // tags: id:case_ID, date_onset:date_of_prodrome, gender:gender, age:age</span></span>
+<span id="cb5-40"><a href="#cb5-40" tabindex="-1"></a></span>
+<span id="cb5-41"><a href="#cb5-41" tabindex="-1"></a>x <span class="sc">|&gt;</span></span>
+<span id="cb5-42"><a href="#cb5-42" tabindex="-1"></a>  <span class="fu">slice_tail</span>(<span class="at">n =</span> <span class="dv">5</span>)</span>
+<span id="cb5-43"><a href="#cb5-43" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb5-44"><a href="#cb5-44" tabindex="-1"></a><span class="co">#&gt; // linelist object</span></span>
+<span id="cb5-45"><a href="#cb5-45" tabindex="-1"></a><span class="co">#&gt;   case_ID infector date_of_prodrome date_of_rash date_of_death age gender</span></span>
+<span id="cb5-46"><a href="#cb5-46" tabindex="-1"></a><span class="co">#&gt; 1     184       NA       1861-10-30   1861-11-06          &lt;NA&gt;  13   &lt;NA&gt;</span></span>
+<span id="cb5-47"><a href="#cb5-47" tabindex="-1"></a><span class="co">#&gt; 2     185       82       1861-12-03   1861-12-07          &lt;NA&gt;   3      m</span></span>
+<span id="cb5-48"><a href="#cb5-48" tabindex="-1"></a><span class="co">#&gt; 3     186       45       1861-11-22   1861-11-26          &lt;NA&gt;   6   &lt;NA&gt;</span></span>
+<span id="cb5-49"><a href="#cb5-49" tabindex="-1"></a><span class="co">#&gt; 4     187       82       1861-12-07   1861-12-11          &lt;NA&gt;   0      m</span></span>
+<span id="cb5-50"><a href="#cb5-50" tabindex="-1"></a><span class="co">#&gt; 5     188      175       1861-11-23   1861-11-27          &lt;NA&gt;   1   &lt;NA&gt;</span></span>
+<span id="cb5-51"><a href="#cb5-51" tabindex="-1"></a><span class="co">#&gt;   family_ID class complications x_loc y_loc</span></span>
+<span id="cb5-52"><a href="#cb5-52" tabindex="-1"></a><span class="co">#&gt; 1        51     2           yes 182.5 200.0</span></span>
+<span id="cb5-53"><a href="#cb5-53" tabindex="-1"></a><span class="co">#&gt; 2        21     0           yes 205.0 182.5</span></span>
+<span id="cb5-54"><a href="#cb5-54" tabindex="-1"></a><span class="co">#&gt; 3        57     0           yes 212.5  90.0</span></span>
+<span id="cb5-55"><a href="#cb5-55" tabindex="-1"></a><span class="co">#&gt; 4        21     0           yes 205.0 182.5</span></span>
+<span id="cb5-56"><a href="#cb5-56" tabindex="-1"></a><span class="co">#&gt; 5        57     0           yes 212.5  90.0</span></span>
+<span id="cb5-57"><a href="#cb5-57" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb5-58"><a href="#cb5-58" tabindex="-1"></a><span class="co">#&gt; // tags: id:case_ID, date_onset:date_of_prodrome, gender:gender, age:age</span></span>
+<span id="cb5-59"><a href="#cb5-59" tabindex="-1"></a></span>
+<span id="cb5-60"><a href="#cb5-60" tabindex="-1"></a>x <span class="sc">|&gt;</span></span>
+<span id="cb5-61"><a href="#cb5-61" tabindex="-1"></a>  <span class="fu">slice_min</span>(age, <span class="at">n =</span> <span class="dv">3</span>)</span>
+<span id="cb5-62"><a href="#cb5-62" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb5-63"><a href="#cb5-63" tabindex="-1"></a><span class="co">#&gt; // linelist object</span></span>
+<span id="cb5-64"><a href="#cb5-64" tabindex="-1"></a><span class="co">#&gt;   case_ID infector date_of_prodrome date_of_rash date_of_death age gender</span></span>
+<span id="cb5-65"><a href="#cb5-65" tabindex="-1"></a><span class="co">#&gt; 1     113       31       1861-12-04   1861-12-07          &lt;NA&gt;   0      f</span></span>
+<span id="cb5-66"><a href="#cb5-66" tabindex="-1"></a><span class="co">#&gt; 2     119      116       1861-12-01   1861-12-08          &lt;NA&gt;   0      f</span></span>
+<span id="cb5-67"><a href="#cb5-67" tabindex="-1"></a><span class="co">#&gt; 3     147       18       1861-12-03   1861-12-07          &lt;NA&gt;   0      f</span></span>
+<span id="cb5-68"><a href="#cb5-68" tabindex="-1"></a><span class="co">#&gt; 4     150      148       1861-12-11   1861-12-15          &lt;NA&gt;   0      m</span></span>
+<span id="cb5-69"><a href="#cb5-69" tabindex="-1"></a><span class="co">#&gt; 5     160       68       1861-12-12   1861-12-13          &lt;NA&gt;   0      f</span></span>
+<span id="cb5-70"><a href="#cb5-70" tabindex="-1"></a><span class="co">#&gt; 6     167      110       1861-12-14   1861-12-18          &lt;NA&gt;   0      m</span></span>
+<span id="cb5-71"><a href="#cb5-71" tabindex="-1"></a><span class="co">#&gt; 7     171      169       1861-12-15   1861-12-17          &lt;NA&gt;   0      m</span></span>
+<span id="cb5-72"><a href="#cb5-72" tabindex="-1"></a><span class="co">#&gt; 8     176      146       1861-12-11   1861-12-15          &lt;NA&gt;   0   &lt;NA&gt;</span></span>
+<span id="cb5-73"><a href="#cb5-73" tabindex="-1"></a><span class="co">#&gt; 9     187       82       1861-12-07   1861-12-11          &lt;NA&gt;   0      m</span></span>
+<span id="cb5-74"><a href="#cb5-74" tabindex="-1"></a><span class="co">#&gt;   family_ID class complications x_loc y_loc</span></span>
+<span id="cb5-75"><a href="#cb5-75" tabindex="-1"></a><span class="co">#&gt; 1        15     0           yes 125.0 187.5</span></span>
+<span id="cb5-76"><a href="#cb5-76" tabindex="-1"></a><span class="co">#&gt; 2        40     0           yes 127.5 147.5</span></span>
+<span id="cb5-77"><a href="#cb5-77" tabindex="-1"></a><span class="co">#&gt; 3        13     0           yes  72.5 152.5</span></span>
+<span id="cb5-78"><a href="#cb5-78" tabindex="-1"></a><span class="co">#&gt; 4        19     0           yes 255.0 230.0</span></span>
+<span id="cb5-79"><a href="#cb5-79" tabindex="-1"></a><span class="co">#&gt; 5        16     0           yes 165.0 192.5</span></span>
+<span id="cb5-80"><a href="#cb5-80" tabindex="-1"></a><span class="co">#&gt; 6        49     0           yes 175.0 140.0</span></span>
+<span id="cb5-81"><a href="#cb5-81" tabindex="-1"></a><span class="co">#&gt; 7        38     0           yes 132.5  80.0</span></span>
+<span id="cb5-82"><a href="#cb5-82" tabindex="-1"></a><span class="co">#&gt; 8        64     0           yes  72.5 152.5</span></span>
+<span id="cb5-83"><a href="#cb5-83" tabindex="-1"></a><span class="co">#&gt; 9        21     0           yes 205.0 182.5</span></span>
+<span id="cb5-84"><a href="#cb5-84" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb5-85"><a href="#cb5-85" tabindex="-1"></a><span class="co">#&gt; // tags: id:case_ID, date_onset:date_of_prodrome, gender:gender, age:age</span></span>
+<span id="cb5-86"><a href="#cb5-86" tabindex="-1"></a></span>
+<span id="cb5-87"><a href="#cb5-87" tabindex="-1"></a>x <span class="sc">|&gt;</span></span>
+<span id="cb5-88"><a href="#cb5-88" tabindex="-1"></a>  <span class="fu">slice_max</span>(age, <span class="at">n =</span> <span class="dv">3</span>)</span>
+<span id="cb5-89"><a href="#cb5-89" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb5-90"><a href="#cb5-90" tabindex="-1"></a><span class="co">#&gt; // linelist object</span></span>
+<span id="cb5-91"><a href="#cb5-91" tabindex="-1"></a><span class="co">#&gt;   case_ID infector date_of_prodrome date_of_rash date_of_death age gender</span></span>
+<span id="cb5-92"><a href="#cb5-92" tabindex="-1"></a><span class="co">#&gt; 1      16      181       1861-11-21   1861-11-25          &lt;NA&gt;  15      f</span></span>
+<span id="cb5-93"><a href="#cb5-93" tabindex="-1"></a><span class="co">#&gt; 2      62       11       1861-12-02   1861-12-06          &lt;NA&gt;  14      m</span></span>
+<span id="cb5-94"><a href="#cb5-94" tabindex="-1"></a><span class="co">#&gt; 3     117      116       1861-12-02   1861-12-06          &lt;NA&gt;  14      m</span></span>
+<span id="cb5-95"><a href="#cb5-95" tabindex="-1"></a><span class="co">#&gt;   family_ID class complications x_loc y_loc</span></span>
+<span id="cb5-96"><a href="#cb5-96" tabindex="-1"></a><span class="co">#&gt; 1        43     2           yes 172.5 172.5</span></span>
+<span id="cb5-97"><a href="#cb5-97" tabindex="-1"></a><span class="co">#&gt; 2         8     2           yes 270.0 102.5</span></span>
+<span id="cb5-98"><a href="#cb5-98" tabindex="-1"></a><span class="co">#&gt; 3        40     2           yes 127.5 147.5</span></span>
+<span id="cb5-99"><a href="#cb5-99" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb5-100"><a href="#cb5-100" tabindex="-1"></a><span class="co">#&gt; // tags: id:case_ID, date_onset:date_of_prodrome, gender:gender, age:age</span></span>
+<span id="cb5-101"><a href="#cb5-101" tabindex="-1"></a></span>
+<span id="cb5-102"><a href="#cb5-102" tabindex="-1"></a>x <span class="sc">|&gt;</span></span>
+<span id="cb5-103"><a href="#cb5-103" tabindex="-1"></a>  <span class="fu">slice_sample</span>(<span class="at">n =</span> <span class="dv">5</span>)</span>
+<span id="cb5-104"><a href="#cb5-104" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb5-105"><a href="#cb5-105" tabindex="-1"></a><span class="co">#&gt; // linelist object</span></span>
+<span id="cb5-106"><a href="#cb5-106" tabindex="-1"></a><span class="co">#&gt;   case_ID infector date_of_prodrome date_of_rash date_of_death age gender</span></span>
+<span id="cb5-107"><a href="#cb5-107" tabindex="-1"></a><span class="co">#&gt; 1      44       45       1861-11-22   1861-11-24          &lt;NA&gt;  10      m</span></span>
+<span id="cb5-108"><a href="#cb5-108" tabindex="-1"></a><span class="co">#&gt; 2      92       93       1861-12-04   1861-12-07          &lt;NA&gt;   2      f</span></span>
+<span id="cb5-109"><a href="#cb5-109" tabindex="-1"></a><span class="co">#&gt; 3      22       45       1861-11-21   1861-11-25          &lt;NA&gt;  10      f</span></span>
+<span id="cb5-110"><a href="#cb5-110" tabindex="-1"></a><span class="co">#&gt; 4     161      148       1861-12-12   1861-12-16          &lt;NA&gt;   6      f</span></span>
+<span id="cb5-111"><a href="#cb5-111" tabindex="-1"></a><span class="co">#&gt; 5      73      180       1861-11-27   1861-12-05          &lt;NA&gt;  11      f</span></span>
+<span id="cb5-112"><a href="#cb5-112" tabindex="-1"></a><span class="co">#&gt;   family_ID class complications x_loc y_loc</span></span>
+<span id="cb5-113"><a href="#cb5-113" tabindex="-1"></a><span class="co">#&gt; 1        45     1           yes 150.0  15.0</span></span>
+<span id="cb5-114"><a href="#cb5-114" tabindex="-1"></a><span class="co">#&gt; 2        36     0           yes 162.5  47.5</span></span>
+<span id="cb5-115"><a href="#cb5-115" tabindex="-1"></a><span class="co">#&gt; 3        35     1           yes 167.5   5.0</span></span>
+<span id="cb5-116"><a href="#cb5-116" tabindex="-1"></a><span class="co">#&gt; 4        19     0           yes 255.0 230.0</span></span>
+<span id="cb5-117"><a href="#cb5-117" tabindex="-1"></a><span class="co">#&gt; 5        47     2           yes 182.5  55.0</span></span>
+<span id="cb5-118"><a href="#cb5-118" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb5-119"><a href="#cb5-119" tabindex="-1"></a><span class="co">#&gt; // tags: id:case_ID, date_onset:date_of_prodrome, gender:gender, age:age</span></span></code></pre></div>
 </div>
 </div>
 <div id="verbs-operating-on-columns" class="section level2">
@@ -601,76 +601,121 @@ affected by the operation</li>
 <div id="dplyrmutate-partial" class="section level3">
 <h3><code>dplyr::mutate()</code> ✓ (partial)</h3>
 <p>There is an incomplete compatibility with
-<code>dplyr::mutate()</code> in that:</p>
-<ul>
-<li>simple renames without any actual modification of the column don’t
-update the tags. In this scenario, users should rather use
-<code>dplyr::rename()</code></li>
-<li>in place column modifications cause tag losses</li>
-</ul>
+<code>dplyr::mutate()</code> in that simple renames without any actual
+modification of the column don’t update the tags. In this scenario,
+users should rather use <code>dplyr::rename()</code></p>
 <p>Although <code>dplyr::mutate()</code> is not able to leverage to full
 power of linelist tags, linelist objects behave as expected the same way
 a data.frame would:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a>x <span class="sc">%&gt;%</span></span>
-<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">major =</span> age <span class="sc">&gt;=</span> <span class="dv">18</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a>  <span class="fu">head</span>()</span>
-<span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb12-5"><a href="#cb12-5" tabindex="-1"></a><span class="co">#&gt; // linelist object</span></span>
-<span id="cb12-6"><a href="#cb12-6" tabindex="-1"></a><span class="co">#&gt;   case_ID infector date_of_prodrome date_of_rash date_of_death age gender</span></span>
-<span id="cb12-7"><a href="#cb12-7" tabindex="-1"></a><span class="co">#&gt; 1       1       45       1861-11-21   1861-11-25          &lt;NA&gt;   7      f</span></span>
-<span id="cb12-8"><a href="#cb12-8" tabindex="-1"></a><span class="co">#&gt; 2       2       45       1861-11-23   1861-11-27          &lt;NA&gt;   6      f</span></span>
-<span id="cb12-9"><a href="#cb12-9" tabindex="-1"></a><span class="co">#&gt; 3       3      172       1861-11-28   1861-12-02          &lt;NA&gt;   4      f</span></span>
-<span id="cb12-10"><a href="#cb12-10" tabindex="-1"></a><span class="co">#&gt; 4       4      180       1861-11-27   1861-11-28          &lt;NA&gt;  13      m</span></span>
-<span id="cb12-11"><a href="#cb12-11" tabindex="-1"></a><span class="co">#&gt; 5       5       45       1861-11-22   1861-11-27          &lt;NA&gt;   8      f</span></span>
-<span id="cb12-12"><a href="#cb12-12" tabindex="-1"></a><span class="co">#&gt; 6       6      180       1861-11-26   1861-11-29          &lt;NA&gt;  12      m</span></span>
-<span id="cb12-13"><a href="#cb12-13" tabindex="-1"></a><span class="co">#&gt;   family_ID class complications x_loc y_loc major</span></span>
-<span id="cb12-14"><a href="#cb12-14" tabindex="-1"></a><span class="co">#&gt; 1        41     1           yes 142.5 100.0 FALSE</span></span>
-<span id="cb12-15"><a href="#cb12-15" tabindex="-1"></a><span class="co">#&gt; 2        41     1           yes 142.5 100.0 FALSE</span></span>
-<span id="cb12-16"><a href="#cb12-16" tabindex="-1"></a><span class="co">#&gt; 3        41     0           yes 142.5 100.0 FALSE</span></span>
-<span id="cb12-17"><a href="#cb12-17" tabindex="-1"></a><span class="co">#&gt; 4        61     2           yes 165.0 102.5 FALSE</span></span>
-<span id="cb12-18"><a href="#cb12-18" tabindex="-1"></a><span class="co">#&gt; 5        42     1           yes 145.0 120.0 FALSE</span></span>
-<span id="cb12-19"><a href="#cb12-19" tabindex="-1"></a><span class="co">#&gt; 6        42     2           yes 145.0 120.0 FALSE</span></span>
-<span id="cb12-20"><a href="#cb12-20" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb12-21"><a href="#cb12-21" tabindex="-1"></a><span class="co">#&gt; // tags: id:case_ID, date_onset:date_of_prodrome, gender:gender, age:age</span></span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="co"># In place modification doesn&#39;t lose tags</span></span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>x <span class="sc">|&gt;</span></span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">age =</span> <span class="fu">as.integer</span>(age)) <span class="sc">|&gt;</span></span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a>  <span class="fu">head</span>()</span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a><span class="co">#&gt; // linelist object</span></span>
+<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a><span class="co">#&gt;   case_ID infector date_of_prodrome date_of_rash date_of_death age gender</span></span>
+<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a><span class="co">#&gt; 1       1       45       1861-11-21   1861-11-25          &lt;NA&gt;   7      f</span></span>
+<span id="cb6-9"><a href="#cb6-9" tabindex="-1"></a><span class="co">#&gt; 2       2       45       1861-11-23   1861-11-27          &lt;NA&gt;   6      f</span></span>
+<span id="cb6-10"><a href="#cb6-10" tabindex="-1"></a><span class="co">#&gt; 3       3      172       1861-11-28   1861-12-02          &lt;NA&gt;   4      f</span></span>
+<span id="cb6-11"><a href="#cb6-11" tabindex="-1"></a><span class="co">#&gt; 4       4      180       1861-11-27   1861-11-28          &lt;NA&gt;  13      m</span></span>
+<span id="cb6-12"><a href="#cb6-12" tabindex="-1"></a><span class="co">#&gt; 5       5       45       1861-11-22   1861-11-27          &lt;NA&gt;   8      f</span></span>
+<span id="cb6-13"><a href="#cb6-13" tabindex="-1"></a><span class="co">#&gt; 6       6      180       1861-11-26   1861-11-29          &lt;NA&gt;  12      m</span></span>
+<span id="cb6-14"><a href="#cb6-14" tabindex="-1"></a><span class="co">#&gt;   family_ID class complications x_loc y_loc</span></span>
+<span id="cb6-15"><a href="#cb6-15" tabindex="-1"></a><span class="co">#&gt; 1        41     1           yes 142.5 100.0</span></span>
+<span id="cb6-16"><a href="#cb6-16" tabindex="-1"></a><span class="co">#&gt; 2        41     1           yes 142.5 100.0</span></span>
+<span id="cb6-17"><a href="#cb6-17" tabindex="-1"></a><span class="co">#&gt; 3        41     0           yes 142.5 100.0</span></span>
+<span id="cb6-18"><a href="#cb6-18" tabindex="-1"></a><span class="co">#&gt; 4        61     2           yes 165.0 102.5</span></span>
+<span id="cb6-19"><a href="#cb6-19" tabindex="-1"></a><span class="co">#&gt; 5        42     1           yes 145.0 120.0</span></span>
+<span id="cb6-20"><a href="#cb6-20" tabindex="-1"></a><span class="co">#&gt; 6        42     2           yes 145.0 120.0</span></span>
+<span id="cb6-21"><a href="#cb6-21" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb6-22"><a href="#cb6-22" tabindex="-1"></a><span class="co">#&gt; // tags: id:case_ID, date_onset:date_of_prodrome, gender:gender, age:age</span></span>
+<span id="cb6-23"><a href="#cb6-23" tabindex="-1"></a></span>
+<span id="cb6-24"><a href="#cb6-24" tabindex="-1"></a><span class="co"># New columns don&#39;t affect existing tags</span></span>
+<span id="cb6-25"><a href="#cb6-25" tabindex="-1"></a>x <span class="sc">|&gt;</span></span>
+<span id="cb6-26"><a href="#cb6-26" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">major =</span> age <span class="sc">&gt;=</span> <span class="dv">18</span>) <span class="sc">|&gt;</span></span>
+<span id="cb6-27"><a href="#cb6-27" tabindex="-1"></a>  <span class="fu">head</span>()</span>
+<span id="cb6-28"><a href="#cb6-28" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb6-29"><a href="#cb6-29" tabindex="-1"></a><span class="co">#&gt; // linelist object</span></span>
+<span id="cb6-30"><a href="#cb6-30" tabindex="-1"></a><span class="co">#&gt;   case_ID infector date_of_prodrome date_of_rash date_of_death age gender</span></span>
+<span id="cb6-31"><a href="#cb6-31" tabindex="-1"></a><span class="co">#&gt; 1       1       45       1861-11-21   1861-11-25          &lt;NA&gt;   7      f</span></span>
+<span id="cb6-32"><a href="#cb6-32" tabindex="-1"></a><span class="co">#&gt; 2       2       45       1861-11-23   1861-11-27          &lt;NA&gt;   6      f</span></span>
+<span id="cb6-33"><a href="#cb6-33" tabindex="-1"></a><span class="co">#&gt; 3       3      172       1861-11-28   1861-12-02          &lt;NA&gt;   4      f</span></span>
+<span id="cb6-34"><a href="#cb6-34" tabindex="-1"></a><span class="co">#&gt; 4       4      180       1861-11-27   1861-11-28          &lt;NA&gt;  13      m</span></span>
+<span id="cb6-35"><a href="#cb6-35" tabindex="-1"></a><span class="co">#&gt; 5       5       45       1861-11-22   1861-11-27          &lt;NA&gt;   8      f</span></span>
+<span id="cb6-36"><a href="#cb6-36" tabindex="-1"></a><span class="co">#&gt; 6       6      180       1861-11-26   1861-11-29          &lt;NA&gt;  12      m</span></span>
+<span id="cb6-37"><a href="#cb6-37" tabindex="-1"></a><span class="co">#&gt;   family_ID class complications x_loc y_loc major</span></span>
+<span id="cb6-38"><a href="#cb6-38" tabindex="-1"></a><span class="co">#&gt; 1        41     1           yes 142.5 100.0 FALSE</span></span>
+<span id="cb6-39"><a href="#cb6-39" tabindex="-1"></a><span class="co">#&gt; 2        41     1           yes 142.5 100.0 FALSE</span></span>
+<span id="cb6-40"><a href="#cb6-40" tabindex="-1"></a><span class="co">#&gt; 3        41     0           yes 142.5 100.0 FALSE</span></span>
+<span id="cb6-41"><a href="#cb6-41" tabindex="-1"></a><span class="co">#&gt; 4        61     2           yes 165.0 102.5 FALSE</span></span>
+<span id="cb6-42"><a href="#cb6-42" tabindex="-1"></a><span class="co">#&gt; 5        42     1           yes 145.0 120.0 FALSE</span></span>
+<span id="cb6-43"><a href="#cb6-43" tabindex="-1"></a><span class="co">#&gt; 6        42     2           yes 145.0 120.0 FALSE</span></span>
+<span id="cb6-44"><a href="#cb6-44" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb6-45"><a href="#cb6-45" tabindex="-1"></a><span class="co">#&gt; // tags: id:case_ID, date_onset:date_of_prodrome, gender:gender, age:age</span></span>
+<span id="cb6-46"><a href="#cb6-46" tabindex="-1"></a></span>
+<span id="cb6-47"><a href="#cb6-47" tabindex="-1"></a><span class="co"># .keep = &quot;unused&quot; generate expected tag loss conditions</span></span>
+<span id="cb6-48"><a href="#cb6-48" tabindex="-1"></a>x <span class="sc">|&gt;</span></span>
+<span id="cb6-49"><a href="#cb6-49" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">edad =</span> age, <span class="at">.keep =</span> <span class="st">&quot;unused&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb6-50"><a href="#cb6-50" tabindex="-1"></a>  <span class="fu">head</span>()</span>
+<span id="cb6-51"><a href="#cb6-51" tabindex="-1"></a><span class="co">#&gt; Warning: The following tags have lost their variable:</span></span>
+<span id="cb6-52"><a href="#cb6-52" tabindex="-1"></a><span class="co">#&gt;  age:age</span></span>
+<span id="cb6-53"><a href="#cb6-53" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb6-54"><a href="#cb6-54" tabindex="-1"></a><span class="co">#&gt; // linelist object</span></span>
+<span id="cb6-55"><a href="#cb6-55" tabindex="-1"></a><span class="co">#&gt;   case_ID infector date_of_prodrome date_of_rash date_of_death gender family_ID</span></span>
+<span id="cb6-56"><a href="#cb6-56" tabindex="-1"></a><span class="co">#&gt; 1       1       45       1861-11-21   1861-11-25          &lt;NA&gt;      f        41</span></span>
+<span id="cb6-57"><a href="#cb6-57" tabindex="-1"></a><span class="co">#&gt; 2       2       45       1861-11-23   1861-11-27          &lt;NA&gt;      f        41</span></span>
+<span id="cb6-58"><a href="#cb6-58" tabindex="-1"></a><span class="co">#&gt; 3       3      172       1861-11-28   1861-12-02          &lt;NA&gt;      f        41</span></span>
+<span id="cb6-59"><a href="#cb6-59" tabindex="-1"></a><span class="co">#&gt; 4       4      180       1861-11-27   1861-11-28          &lt;NA&gt;      m        61</span></span>
+<span id="cb6-60"><a href="#cb6-60" tabindex="-1"></a><span class="co">#&gt; 5       5       45       1861-11-22   1861-11-27          &lt;NA&gt;      f        42</span></span>
+<span id="cb6-61"><a href="#cb6-61" tabindex="-1"></a><span class="co">#&gt; 6       6      180       1861-11-26   1861-11-29          &lt;NA&gt;      m        42</span></span>
+<span id="cb6-62"><a href="#cb6-62" tabindex="-1"></a><span class="co">#&gt;   class complications x_loc y_loc edad</span></span>
+<span id="cb6-63"><a href="#cb6-63" tabindex="-1"></a><span class="co">#&gt; 1     1           yes 142.5 100.0    7</span></span>
+<span id="cb6-64"><a href="#cb6-64" tabindex="-1"></a><span class="co">#&gt; 2     1           yes 142.5 100.0    6</span></span>
+<span id="cb6-65"><a href="#cb6-65" tabindex="-1"></a><span class="co">#&gt; 3     0           yes 142.5 100.0    4</span></span>
+<span id="cb6-66"><a href="#cb6-66" tabindex="-1"></a><span class="co">#&gt; 4     2           yes 165.0 102.5   13</span></span>
+<span id="cb6-67"><a href="#cb6-67" tabindex="-1"></a><span class="co">#&gt; 5     1           yes 145.0 120.0    8</span></span>
+<span id="cb6-68"><a href="#cb6-68" tabindex="-1"></a><span class="co">#&gt; 6     2           yes 145.0 120.0   12</span></span>
+<span id="cb6-69"><a href="#cb6-69" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb6-70"><a href="#cb6-70" tabindex="-1"></a><span class="co">#&gt; // tags: id:case_ID, date_onset:date_of_prodrome, gender:gender</span></span></code></pre></div>
 </div>
 <div id="dplyrpull" class="section level3">
 <h3><code>dplyr::pull()</code> ✅</h3>
 <p><code>dplyr::pull()</code> returns a vector, which results, as
 expected, in the loss of the linelist class and tags:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a>x <span class="sc">%&gt;%</span></span>
-<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a>  <span class="fu">pull</span>(age)</span>
-<span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a><span class="co">#&gt;   [1]  7  6  4 13  8 12  6 10 13  7 11  7 13 13  8 15 10  2 11 10 13 10  7  4 12</span></span>
-<span id="cb13-4"><a href="#cb13-4" tabindex="-1"></a><span class="co">#&gt;  [26]  7  5 10 13 11  9  7  7 11 13 11 13 12 10 13 12  4  2 10  7 13 11  3 10  6</span></span>
-<span id="cb13-5"><a href="#cb13-5" tabindex="-1"></a><span class="co">#&gt;  [51]  4 13  6  4 11  8  3  9 10  2  5 14 12  7  2  5 11  2  1 13 10 10 11 10 13</span></span>
-<span id="cb13-6"><a href="#cb13-6" tabindex="-1"></a><span class="co">#&gt;  [76]  2  8 11  5 12 12  8 10  6  5  3 12 10  3 11  4  2  8  4  1  2 10  3  5 12</span></span>
-<span id="cb13-7"><a href="#cb13-7" tabindex="-1"></a><span class="co">#&gt; [101]  7 12 12  5  3  4 12  6  6  3 12 10  0 13 11  8 14  2  0  1 10  1  1  3  2</span></span>
-<span id="cb13-8"><a href="#cb13-8" tabindex="-1"></a><span class="co">#&gt; [126]  5  1  5  4 12  1 11  2 13  2 13 10 11 13  2  4  5 11  2  8  4  0 13  4  0</span></span>
-<span id="cb13-9"><a href="#cb13-9" tabindex="-1"></a><span class="co">#&gt; [151]  2  4 10  6 13  8  4  3  2  0  6  6  1  3  2  1  0  1  4 10  0  3  6  3  2</span></span>
-<span id="cb13-10"><a href="#cb13-10" tabindex="-1"></a><span class="co">#&gt; [176]  0  8  4  1 10 10 13  4 13  3  6  0  1</span></span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a>x <span class="sc">|&gt;</span></span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>  <span class="fu">pull</span>(age)</span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a><span class="co">#&gt;   [1]  7  6  4 13  8 12  6 10 13  7 11  7 13 13  8 15 10  2 11 10 13 10  7  4 12</span></span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a><span class="co">#&gt;  [26]  7  5 10 13 11  9  7  7 11 13 11 13 12 10 13 12  4  2 10  7 13 11  3 10  6</span></span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a><span class="co">#&gt;  [51]  4 13  6  4 11  8  3  9 10  2  5 14 12  7  2  5 11  2  1 13 10 10 11 10 13</span></span>
+<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a><span class="co">#&gt;  [76]  2  8 11  5 12 12  8 10  6  5  3 12 10  3 11  4  2  8  4  1  2 10  3  5 12</span></span>
+<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a><span class="co">#&gt; [101]  7 12 12  5  3  4 12  6  6  3 12 10  0 13 11  8 14  2  0  1 10  1  1  3  2</span></span>
+<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a><span class="co">#&gt; [126]  5  1  5  4 12  1 11  2 13  2 13 10 11 13  2  4  5 11  2  8  4  0 13  4  0</span></span>
+<span id="cb7-9"><a href="#cb7-9" tabindex="-1"></a><span class="co">#&gt; [151]  2  4 10  6 13  8  4  3  2  0  6  6  1  3  2  1  0  1  4 10  0  3  6  3  2</span></span>
+<span id="cb7-10"><a href="#cb7-10" tabindex="-1"></a><span class="co">#&gt; [176]  0  8  4  1 10 10 13  4 13  3  6  0  1</span></span></code></pre></div>
 </div>
 <div id="dplyrrelocate" class="section level3">
 <h3><code>dplyr::relocate()</code> ✅</h3>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a>x <span class="sc">%&gt;%</span></span>
-<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a>  <span class="fu">relocate</span>(date_of_prodrome, <span class="at">.before =</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a>  <span class="fu">head</span>()</span>
-<span id="cb14-4"><a href="#cb14-4" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb14-5"><a href="#cb14-5" tabindex="-1"></a><span class="co">#&gt; // linelist object</span></span>
-<span id="cb14-6"><a href="#cb14-6" tabindex="-1"></a><span class="co">#&gt;   date_of_prodrome case_ID infector date_of_rash date_of_death age gender</span></span>
-<span id="cb14-7"><a href="#cb14-7" tabindex="-1"></a><span class="co">#&gt; 1       1861-11-21       1       45   1861-11-25          &lt;NA&gt;   7      f</span></span>
-<span id="cb14-8"><a href="#cb14-8" tabindex="-1"></a><span class="co">#&gt; 2       1861-11-23       2       45   1861-11-27          &lt;NA&gt;   6      f</span></span>
-<span id="cb14-9"><a href="#cb14-9" tabindex="-1"></a><span class="co">#&gt; 3       1861-11-28       3      172   1861-12-02          &lt;NA&gt;   4      f</span></span>
-<span id="cb14-10"><a href="#cb14-10" tabindex="-1"></a><span class="co">#&gt; 4       1861-11-27       4      180   1861-11-28          &lt;NA&gt;  13      m</span></span>
-<span id="cb14-11"><a href="#cb14-11" tabindex="-1"></a><span class="co">#&gt; 5       1861-11-22       5       45   1861-11-27          &lt;NA&gt;   8      f</span></span>
-<span id="cb14-12"><a href="#cb14-12" tabindex="-1"></a><span class="co">#&gt; 6       1861-11-26       6      180   1861-11-29          &lt;NA&gt;  12      m</span></span>
-<span id="cb14-13"><a href="#cb14-13" tabindex="-1"></a><span class="co">#&gt;   family_ID class complications x_loc y_loc</span></span>
-<span id="cb14-14"><a href="#cb14-14" tabindex="-1"></a><span class="co">#&gt; 1        41     1           yes 142.5 100.0</span></span>
-<span id="cb14-15"><a href="#cb14-15" tabindex="-1"></a><span class="co">#&gt; 2        41     1           yes 142.5 100.0</span></span>
-<span id="cb14-16"><a href="#cb14-16" tabindex="-1"></a><span class="co">#&gt; 3        41     0           yes 142.5 100.0</span></span>
-<span id="cb14-17"><a href="#cb14-17" tabindex="-1"></a><span class="co">#&gt; 4        61     2           yes 165.0 102.5</span></span>
-<span id="cb14-18"><a href="#cb14-18" tabindex="-1"></a><span class="co">#&gt; 5        42     1           yes 145.0 120.0</span></span>
-<span id="cb14-19"><a href="#cb14-19" tabindex="-1"></a><span class="co">#&gt; 6        42     2           yes 145.0 120.0</span></span>
-<span id="cb14-20"><a href="#cb14-20" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb14-21"><a href="#cb14-21" tabindex="-1"></a><span class="co">#&gt; // tags: id:case_ID, date_onset:date_of_prodrome, gender:gender, age:age</span></span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a>x <span class="sc">|&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>  <span class="fu">relocate</span>(date_of_prodrome, <span class="at">.before =</span> <span class="dv">1</span>) <span class="sc">|&gt;</span></span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a>  <span class="fu">head</span>()</span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a><span class="co">#&gt; // linelist object</span></span>
+<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a><span class="co">#&gt;   date_of_prodrome case_ID infector date_of_rash date_of_death age gender</span></span>
+<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a><span class="co">#&gt; 1       1861-11-21       1       45   1861-11-25          &lt;NA&gt;   7      f</span></span>
+<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a><span class="co">#&gt; 2       1861-11-23       2       45   1861-11-27          &lt;NA&gt;   6      f</span></span>
+<span id="cb8-9"><a href="#cb8-9" tabindex="-1"></a><span class="co">#&gt; 3       1861-11-28       3      172   1861-12-02          &lt;NA&gt;   4      f</span></span>
+<span id="cb8-10"><a href="#cb8-10" tabindex="-1"></a><span class="co">#&gt; 4       1861-11-27       4      180   1861-11-28          &lt;NA&gt;  13      m</span></span>
+<span id="cb8-11"><a href="#cb8-11" tabindex="-1"></a><span class="co">#&gt; 5       1861-11-22       5       45   1861-11-27          &lt;NA&gt;   8      f</span></span>
+<span id="cb8-12"><a href="#cb8-12" tabindex="-1"></a><span class="co">#&gt; 6       1861-11-26       6      180   1861-11-29          &lt;NA&gt;  12      m</span></span>
+<span id="cb8-13"><a href="#cb8-13" tabindex="-1"></a><span class="co">#&gt;   family_ID class complications x_loc y_loc</span></span>
+<span id="cb8-14"><a href="#cb8-14" tabindex="-1"></a><span class="co">#&gt; 1        41     1           yes 142.5 100.0</span></span>
+<span id="cb8-15"><a href="#cb8-15" tabindex="-1"></a><span class="co">#&gt; 2        41     1           yes 142.5 100.0</span></span>
+<span id="cb8-16"><a href="#cb8-16" tabindex="-1"></a><span class="co">#&gt; 3        41     0           yes 142.5 100.0</span></span>
+<span id="cb8-17"><a href="#cb8-17" tabindex="-1"></a><span class="co">#&gt; 4        61     2           yes 165.0 102.5</span></span>
+<span id="cb8-18"><a href="#cb8-18" tabindex="-1"></a><span class="co">#&gt; 5        42     1           yes 145.0 120.0</span></span>
+<span id="cb8-19"><a href="#cb8-19" tabindex="-1"></a><span class="co">#&gt; 6        42     2           yes 145.0 120.0</span></span>
+<span id="cb8-20"><a href="#cb8-20" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb8-21"><a href="#cb8-21" tabindex="-1"></a><span class="co">#&gt; // tags: id:case_ID, date_onset:date_of_prodrome, gender:gender, age:age</span></span></code></pre></div>
 </div>
 <div id="dplyrrename-dplyrrename_with" class="section level3">
 <h3><code>dplyr::rename()</code> &amp; <code>dplyr::rename_with()</code>
@@ -680,103 +725,85 @@ linelist, meaning that tags will be updated at the same time that
 columns are renamed. This is possibly because it uses
 <code>names&lt;-()</code> under the hood, which linelist provides a
 custom <code>names&lt;-.linelist()</code> method for:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a>x <span class="sc">%&gt;%</span></span>
-<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">edad =</span> age) <span class="sc">%&gt;%</span></span>
-<span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a>  <span class="fu">head</span>()</span>
-<span id="cb15-4"><a href="#cb15-4" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb15-5"><a href="#cb15-5" tabindex="-1"></a><span class="co">#&gt; // linelist object</span></span>
-<span id="cb15-6"><a href="#cb15-6" tabindex="-1"></a><span class="co">#&gt;   case_ID infector date_of_prodrome date_of_rash date_of_death edad gender</span></span>
-<span id="cb15-7"><a href="#cb15-7" tabindex="-1"></a><span class="co">#&gt; 1       1       45       1861-11-21   1861-11-25          &lt;NA&gt;    7      f</span></span>
-<span id="cb15-8"><a href="#cb15-8" tabindex="-1"></a><span class="co">#&gt; 2       2       45       1861-11-23   1861-11-27          &lt;NA&gt;    6      f</span></span>
-<span id="cb15-9"><a href="#cb15-9" tabindex="-1"></a><span class="co">#&gt; 3       3      172       1861-11-28   1861-12-02          &lt;NA&gt;    4      f</span></span>
-<span id="cb15-10"><a href="#cb15-10" tabindex="-1"></a><span class="co">#&gt; 4       4      180       1861-11-27   1861-11-28          &lt;NA&gt;   13      m</span></span>
-<span id="cb15-11"><a href="#cb15-11" tabindex="-1"></a><span class="co">#&gt; 5       5       45       1861-11-22   1861-11-27          &lt;NA&gt;    8      f</span></span>
-<span id="cb15-12"><a href="#cb15-12" tabindex="-1"></a><span class="co">#&gt; 6       6      180       1861-11-26   1861-11-29          &lt;NA&gt;   12      m</span></span>
-<span id="cb15-13"><a href="#cb15-13" tabindex="-1"></a><span class="co">#&gt;   family_ID class complications x_loc y_loc</span></span>
-<span id="cb15-14"><a href="#cb15-14" tabindex="-1"></a><span class="co">#&gt; 1        41     1           yes 142.5 100.0</span></span>
-<span id="cb15-15"><a href="#cb15-15" tabindex="-1"></a><span class="co">#&gt; 2        41     1           yes 142.5 100.0</span></span>
-<span id="cb15-16"><a href="#cb15-16" tabindex="-1"></a><span class="co">#&gt; 3        41     0           yes 142.5 100.0</span></span>
-<span id="cb15-17"><a href="#cb15-17" tabindex="-1"></a><span class="co">#&gt; 4        61     2           yes 165.0 102.5</span></span>
-<span id="cb15-18"><a href="#cb15-18" tabindex="-1"></a><span class="co">#&gt; 5        42     1           yes 145.0 120.0</span></span>
-<span id="cb15-19"><a href="#cb15-19" tabindex="-1"></a><span class="co">#&gt; 6        42     2           yes 145.0 120.0</span></span>
-<span id="cb15-20"><a href="#cb15-20" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb15-21"><a href="#cb15-21" tabindex="-1"></a><span class="co">#&gt; // tags: id:case_ID, date_onset:date_of_prodrome, gender:gender, age:edad</span></span></code></pre></div>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a></span>
-<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a>x <span class="sc">%&gt;%</span></span>
-<span id="cb16-3"><a href="#cb16-3" tabindex="-1"></a>  <span class="fu">rename_with</span>(toupper) <span class="sc">%&gt;%</span></span>
-<span id="cb16-4"><a href="#cb16-4" tabindex="-1"></a>  <span class="fu">head</span>()</span>
-<span id="cb16-5"><a href="#cb16-5" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb16-6"><a href="#cb16-6" tabindex="-1"></a><span class="co">#&gt; // linelist object</span></span>
-<span id="cb16-7"><a href="#cb16-7" tabindex="-1"></a><span class="co">#&gt;   CASE_ID INFECTOR DATE_OF_PRODROME DATE_OF_RASH DATE_OF_DEATH AGE GENDER</span></span>
-<span id="cb16-8"><a href="#cb16-8" tabindex="-1"></a><span class="co">#&gt; 1       1       45       1861-11-21   1861-11-25          &lt;NA&gt;   7      f</span></span>
-<span id="cb16-9"><a href="#cb16-9" tabindex="-1"></a><span class="co">#&gt; 2       2       45       1861-11-23   1861-11-27          &lt;NA&gt;   6      f</span></span>
-<span id="cb16-10"><a href="#cb16-10" tabindex="-1"></a><span class="co">#&gt; 3       3      172       1861-11-28   1861-12-02          &lt;NA&gt;   4      f</span></span>
-<span id="cb16-11"><a href="#cb16-11" tabindex="-1"></a><span class="co">#&gt; 4       4      180       1861-11-27   1861-11-28          &lt;NA&gt;  13      m</span></span>
-<span id="cb16-12"><a href="#cb16-12" tabindex="-1"></a><span class="co">#&gt; 5       5       45       1861-11-22   1861-11-27          &lt;NA&gt;   8      f</span></span>
-<span id="cb16-13"><a href="#cb16-13" tabindex="-1"></a><span class="co">#&gt; 6       6      180       1861-11-26   1861-11-29          &lt;NA&gt;  12      m</span></span>
-<span id="cb16-14"><a href="#cb16-14" tabindex="-1"></a><span class="co">#&gt;   FAMILY_ID CLASS COMPLICATIONS X_LOC Y_LOC</span></span>
-<span id="cb16-15"><a href="#cb16-15" tabindex="-1"></a><span class="co">#&gt; 1        41     1           yes 142.5 100.0</span></span>
-<span id="cb16-16"><a href="#cb16-16" tabindex="-1"></a><span class="co">#&gt; 2        41     1           yes 142.5 100.0</span></span>
-<span id="cb16-17"><a href="#cb16-17" tabindex="-1"></a><span class="co">#&gt; 3        41     0           yes 142.5 100.0</span></span>
-<span id="cb16-18"><a href="#cb16-18" tabindex="-1"></a><span class="co">#&gt; 4        61     2           yes 165.0 102.5</span></span>
-<span id="cb16-19"><a href="#cb16-19" tabindex="-1"></a><span class="co">#&gt; 5        42     1           yes 145.0 120.0</span></span>
-<span id="cb16-20"><a href="#cb16-20" tabindex="-1"></a><span class="co">#&gt; 6        42     2           yes 145.0 120.0</span></span>
-<span id="cb16-21"><a href="#cb16-21" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb16-22"><a href="#cb16-22" tabindex="-1"></a><span class="co">#&gt; // tags: id:CASE_ID, date_onset:DATE_OF_PRODROME, gender:GENDER, age:AGE</span></span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a>x <span class="sc">|&gt;</span></span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">edad =</span> age) <span class="sc">|&gt;</span></span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a>  <span class="fu">head</span>()</span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a><span class="co">#&gt; // linelist object</span></span>
+<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a><span class="co">#&gt;   case_ID infector date_of_prodrome date_of_rash date_of_death edad gender</span></span>
+<span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a><span class="co">#&gt; 1       1       45       1861-11-21   1861-11-25          &lt;NA&gt;    7      f</span></span>
+<span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a><span class="co">#&gt; 2       2       45       1861-11-23   1861-11-27          &lt;NA&gt;    6      f</span></span>
+<span id="cb9-9"><a href="#cb9-9" tabindex="-1"></a><span class="co">#&gt; 3       3      172       1861-11-28   1861-12-02          &lt;NA&gt;    4      f</span></span>
+<span id="cb9-10"><a href="#cb9-10" tabindex="-1"></a><span class="co">#&gt; 4       4      180       1861-11-27   1861-11-28          &lt;NA&gt;   13      m</span></span>
+<span id="cb9-11"><a href="#cb9-11" tabindex="-1"></a><span class="co">#&gt; 5       5       45       1861-11-22   1861-11-27          &lt;NA&gt;    8      f</span></span>
+<span id="cb9-12"><a href="#cb9-12" tabindex="-1"></a><span class="co">#&gt; 6       6      180       1861-11-26   1861-11-29          &lt;NA&gt;   12      m</span></span>
+<span id="cb9-13"><a href="#cb9-13" tabindex="-1"></a><span class="co">#&gt;   family_ID class complications x_loc y_loc</span></span>
+<span id="cb9-14"><a href="#cb9-14" tabindex="-1"></a><span class="co">#&gt; 1        41     1           yes 142.5 100.0</span></span>
+<span id="cb9-15"><a href="#cb9-15" tabindex="-1"></a><span class="co">#&gt; 2        41     1           yes 142.5 100.0</span></span>
+<span id="cb9-16"><a href="#cb9-16" tabindex="-1"></a><span class="co">#&gt; 3        41     0           yes 142.5 100.0</span></span>
+<span id="cb9-17"><a href="#cb9-17" tabindex="-1"></a><span class="co">#&gt; 4        61     2           yes 165.0 102.5</span></span>
+<span id="cb9-18"><a href="#cb9-18" tabindex="-1"></a><span class="co">#&gt; 5        42     1           yes 145.0 120.0</span></span>
+<span id="cb9-19"><a href="#cb9-19" tabindex="-1"></a><span class="co">#&gt; 6        42     2           yes 145.0 120.0</span></span>
+<span id="cb9-20"><a href="#cb9-20" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb9-21"><a href="#cb9-21" tabindex="-1"></a><span class="co">#&gt; // tags: id:case_ID, date_onset:date_of_prodrome, gender:gender, age:edad</span></span>
+<span id="cb9-22"><a href="#cb9-22" tabindex="-1"></a></span>
+<span id="cb9-23"><a href="#cb9-23" tabindex="-1"></a>x <span class="sc">|&gt;</span></span>
+<span id="cb9-24"><a href="#cb9-24" tabindex="-1"></a>  <span class="fu">rename_with</span>(toupper) <span class="sc">|&gt;</span></span>
+<span id="cb9-25"><a href="#cb9-25" tabindex="-1"></a>  <span class="fu">head</span>()</span>
+<span id="cb9-26"><a href="#cb9-26" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb9-27"><a href="#cb9-27" tabindex="-1"></a><span class="co">#&gt; // linelist object</span></span>
+<span id="cb9-28"><a href="#cb9-28" tabindex="-1"></a><span class="co">#&gt;   CASE_ID INFECTOR DATE_OF_PRODROME DATE_OF_RASH DATE_OF_DEATH AGE GENDER</span></span>
+<span id="cb9-29"><a href="#cb9-29" tabindex="-1"></a><span class="co">#&gt; 1       1       45       1861-11-21   1861-11-25          &lt;NA&gt;   7      f</span></span>
+<span id="cb9-30"><a href="#cb9-30" tabindex="-1"></a><span class="co">#&gt; 2       2       45       1861-11-23   1861-11-27          &lt;NA&gt;   6      f</span></span>
+<span id="cb9-31"><a href="#cb9-31" tabindex="-1"></a><span class="co">#&gt; 3       3      172       1861-11-28   1861-12-02          &lt;NA&gt;   4      f</span></span>
+<span id="cb9-32"><a href="#cb9-32" tabindex="-1"></a><span class="co">#&gt; 4       4      180       1861-11-27   1861-11-28          &lt;NA&gt;  13      m</span></span>
+<span id="cb9-33"><a href="#cb9-33" tabindex="-1"></a><span class="co">#&gt; 5       5       45       1861-11-22   1861-11-27          &lt;NA&gt;   8      f</span></span>
+<span id="cb9-34"><a href="#cb9-34" tabindex="-1"></a><span class="co">#&gt; 6       6      180       1861-11-26   1861-11-29          &lt;NA&gt;  12      m</span></span>
+<span id="cb9-35"><a href="#cb9-35" tabindex="-1"></a><span class="co">#&gt;   FAMILY_ID CLASS COMPLICATIONS X_LOC Y_LOC</span></span>
+<span id="cb9-36"><a href="#cb9-36" tabindex="-1"></a><span class="co">#&gt; 1        41     1           yes 142.5 100.0</span></span>
+<span id="cb9-37"><a href="#cb9-37" tabindex="-1"></a><span class="co">#&gt; 2        41     1           yes 142.5 100.0</span></span>
+<span id="cb9-38"><a href="#cb9-38" tabindex="-1"></a><span class="co">#&gt; 3        41     0           yes 142.5 100.0</span></span>
+<span id="cb9-39"><a href="#cb9-39" tabindex="-1"></a><span class="co">#&gt; 4        61     2           yes 165.0 102.5</span></span>
+<span id="cb9-40"><a href="#cb9-40" tabindex="-1"></a><span class="co">#&gt; 5        42     1           yes 145.0 120.0</span></span>
+<span id="cb9-41"><a href="#cb9-41" tabindex="-1"></a><span class="co">#&gt; 6        42     2           yes 145.0 120.0</span></span>
+<span id="cb9-42"><a href="#cb9-42" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb9-43"><a href="#cb9-43" tabindex="-1"></a><span class="co">#&gt; // tags: id:CASE_ID, date_onset:DATE_OF_PRODROME, gender:GENDER, age:AGE</span></span></code></pre></div>
 </div>
-<div id="dplyrselect-partial" class="section level3">
-<h3><code>dplyr::select()</code> ✓ (partial)</h3>
-<p><code>dplyr::select()</code> is currently only partially compatible
-with linelist because renames with <code>select()</code> do not
-correctly update tags</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="co"># Works fine</span></span>
-<span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a>x <span class="sc">%&gt;%</span></span>
-<span id="cb17-3"><a href="#cb17-3" tabindex="-1"></a>  <span class="fu">select</span>(case_ID, date_of_prodrome, gender, age) <span class="sc">%&gt;%</span></span>
-<span id="cb17-4"><a href="#cb17-4" tabindex="-1"></a>  <span class="fu">head</span>()</span>
-<span id="cb17-5"><a href="#cb17-5" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb17-6"><a href="#cb17-6" tabindex="-1"></a><span class="co">#&gt; // linelist object</span></span>
-<span id="cb17-7"><a href="#cb17-7" tabindex="-1"></a><span class="co">#&gt;   case_ID date_of_prodrome gender age</span></span>
-<span id="cb17-8"><a href="#cb17-8" tabindex="-1"></a><span class="co">#&gt; 1       1       1861-11-21      f   7</span></span>
-<span id="cb17-9"><a href="#cb17-9" tabindex="-1"></a><span class="co">#&gt; 2       2       1861-11-23      f   6</span></span>
-<span id="cb17-10"><a href="#cb17-10" tabindex="-1"></a><span class="co">#&gt; 3       3       1861-11-28      f   4</span></span>
-<span id="cb17-11"><a href="#cb17-11" tabindex="-1"></a><span class="co">#&gt; 4       4       1861-11-27      m  13</span></span>
-<span id="cb17-12"><a href="#cb17-12" tabindex="-1"></a><span class="co">#&gt; 5       5       1861-11-22      f   8</span></span>
-<span id="cb17-13"><a href="#cb17-13" tabindex="-1"></a><span class="co">#&gt; 6       6       1861-11-26      m  12</span></span>
-<span id="cb17-14"><a href="#cb17-14" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb17-15"><a href="#cb17-15" tabindex="-1"></a><span class="co">#&gt; // tags: id:case_ID, date_onset:date_of_prodrome, gender:gender, age:age</span></span></code></pre></div>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a></span>
-<span id="cb18-2"><a href="#cb18-2" tabindex="-1"></a><span class="co"># Tags are not updated!</span></span>
-<span id="cb18-3"><a href="#cb18-3" tabindex="-1"></a>x <span class="sc">%&gt;%</span></span>
-<span id="cb18-4"><a href="#cb18-4" tabindex="-1"></a>  <span class="fu">select</span>(case_ID, date_of_prodrome, gender, <span class="at">edad =</span> age) <span class="sc">%&gt;%</span></span>
-<span id="cb18-5"><a href="#cb18-5" tabindex="-1"></a>  <span class="fu">head</span>()</span>
-<span id="cb18-6"><a href="#cb18-6" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb18-7"><a href="#cb18-7" tabindex="-1"></a><span class="co">#&gt; // linelist object</span></span>
-<span id="cb18-8"><a href="#cb18-8" tabindex="-1"></a><span class="co">#&gt;   case_ID date_of_prodrome gender edad</span></span>
-<span id="cb18-9"><a href="#cb18-9" tabindex="-1"></a><span class="co">#&gt; 1       1       1861-11-21      f    7</span></span>
-<span id="cb18-10"><a href="#cb18-10" tabindex="-1"></a><span class="co">#&gt; 2       2       1861-11-23      f    6</span></span>
-<span id="cb18-11"><a href="#cb18-11" tabindex="-1"></a><span class="co">#&gt; 3       3       1861-11-28      f    4</span></span>
-<span id="cb18-12"><a href="#cb18-12" tabindex="-1"></a><span class="co">#&gt; 4       4       1861-11-27      m   13</span></span>
-<span id="cb18-13"><a href="#cb18-13" tabindex="-1"></a><span class="co">#&gt; 5       5       1861-11-22      f    8</span></span>
-<span id="cb18-14"><a href="#cb18-14" tabindex="-1"></a><span class="co">#&gt; 6       6       1861-11-26      m   12</span></span>
-<span id="cb18-15"><a href="#cb18-15" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb18-16"><a href="#cb18-16" tabindex="-1"></a><span class="co">#&gt; // tags: id:case_ID, date_onset:date_of_prodrome, gender:gender, age:edad</span></span></code></pre></div>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a></span>
-<span id="cb19-2"><a href="#cb19-2" tabindex="-1"></a><span class="co"># Instead, split the selecting and renaming steps:</span></span>
-<span id="cb19-3"><a href="#cb19-3" tabindex="-1"></a>x <span class="sc">%&gt;%</span></span>
-<span id="cb19-4"><a href="#cb19-4" tabindex="-1"></a>  <span class="fu">select</span>(case_ID, date_of_prodrome, gender, age) <span class="sc">%&gt;%</span></span>
-<span id="cb19-5"><a href="#cb19-5" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">edad =</span> age) <span class="sc">%&gt;%</span></span>
-<span id="cb19-6"><a href="#cb19-6" tabindex="-1"></a>  <span class="fu">head</span>()</span>
-<span id="cb19-7"><a href="#cb19-7" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb19-8"><a href="#cb19-8" tabindex="-1"></a><span class="co">#&gt; // linelist object</span></span>
-<span id="cb19-9"><a href="#cb19-9" tabindex="-1"></a><span class="co">#&gt;   case_ID date_of_prodrome gender edad</span></span>
-<span id="cb19-10"><a href="#cb19-10" tabindex="-1"></a><span class="co">#&gt; 1       1       1861-11-21      f    7</span></span>
-<span id="cb19-11"><a href="#cb19-11" tabindex="-1"></a><span class="co">#&gt; 2       2       1861-11-23      f    6</span></span>
-<span id="cb19-12"><a href="#cb19-12" tabindex="-1"></a><span class="co">#&gt; 3       3       1861-11-28      f    4</span></span>
-<span id="cb19-13"><a href="#cb19-13" tabindex="-1"></a><span class="co">#&gt; 4       4       1861-11-27      m   13</span></span>
-<span id="cb19-14"><a href="#cb19-14" tabindex="-1"></a><span class="co">#&gt; 5       5       1861-11-22      f    8</span></span>
-<span id="cb19-15"><a href="#cb19-15" tabindex="-1"></a><span class="co">#&gt; 6       6       1861-11-26      m   12</span></span>
-<span id="cb19-16"><a href="#cb19-16" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb19-17"><a href="#cb19-17" tabindex="-1"></a><span class="co">#&gt; // tags: id:case_ID, date_onset:date_of_prodrome, gender:gender, age:edad</span></span></code></pre></div>
+<div id="dplyrselect" class="section level3">
+<h3><code>dplyr::select()</code> ✅</h3>
+<p><code>dplyr::select()</code> is fully compatible with linelist,
+including when columns are renamed in a <code>select()</code>:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="co"># Works fine</span></span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a>x <span class="sc">|&gt;</span></span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a>  <span class="fu">select</span>(case_ID, date_of_prodrome, gender, age) <span class="sc">|&gt;</span></span>
+<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a>  <span class="fu">head</span>()</span>
+<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb10-6"><a href="#cb10-6" tabindex="-1"></a><span class="co">#&gt; // linelist object</span></span>
+<span id="cb10-7"><a href="#cb10-7" tabindex="-1"></a><span class="co">#&gt;   case_ID date_of_prodrome gender age</span></span>
+<span id="cb10-8"><a href="#cb10-8" tabindex="-1"></a><span class="co">#&gt; 1       1       1861-11-21      f   7</span></span>
+<span id="cb10-9"><a href="#cb10-9" tabindex="-1"></a><span class="co">#&gt; 2       2       1861-11-23      f   6</span></span>
+<span id="cb10-10"><a href="#cb10-10" tabindex="-1"></a><span class="co">#&gt; 3       3       1861-11-28      f   4</span></span>
+<span id="cb10-11"><a href="#cb10-11" tabindex="-1"></a><span class="co">#&gt; 4       4       1861-11-27      m  13</span></span>
+<span id="cb10-12"><a href="#cb10-12" tabindex="-1"></a><span class="co">#&gt; 5       5       1861-11-22      f   8</span></span>
+<span id="cb10-13"><a href="#cb10-13" tabindex="-1"></a><span class="co">#&gt; 6       6       1861-11-26      m  12</span></span>
+<span id="cb10-14"><a href="#cb10-14" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb10-15"><a href="#cb10-15" tabindex="-1"></a><span class="co">#&gt; // tags: id:case_ID, date_onset:date_of_prodrome, gender:gender, age:age</span></span>
+<span id="cb10-16"><a href="#cb10-16" tabindex="-1"></a></span>
+<span id="cb10-17"><a href="#cb10-17" tabindex="-1"></a><span class="co"># Tags are updated!</span></span>
+<span id="cb10-18"><a href="#cb10-18" tabindex="-1"></a>x <span class="sc">|&gt;</span></span>
+<span id="cb10-19"><a href="#cb10-19" tabindex="-1"></a>  <span class="fu">select</span>(case_ID, date_of_prodrome, gender, <span class="at">edad =</span> age) <span class="sc">|&gt;</span></span>
+<span id="cb10-20"><a href="#cb10-20" tabindex="-1"></a>  <span class="fu">head</span>()</span>
+<span id="cb10-21"><a href="#cb10-21" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb10-22"><a href="#cb10-22" tabindex="-1"></a><span class="co">#&gt; // linelist object</span></span>
+<span id="cb10-23"><a href="#cb10-23" tabindex="-1"></a><span class="co">#&gt;   case_ID date_of_prodrome gender edad</span></span>
+<span id="cb10-24"><a href="#cb10-24" tabindex="-1"></a><span class="co">#&gt; 1       1       1861-11-21      f    7</span></span>
+<span id="cb10-25"><a href="#cb10-25" tabindex="-1"></a><span class="co">#&gt; 2       2       1861-11-23      f    6</span></span>
+<span id="cb10-26"><a href="#cb10-26" tabindex="-1"></a><span class="co">#&gt; 3       3       1861-11-28      f    4</span></span>
+<span id="cb10-27"><a href="#cb10-27" tabindex="-1"></a><span class="co">#&gt; 4       4       1861-11-27      m   13</span></span>
+<span id="cb10-28"><a href="#cb10-28" tabindex="-1"></a><span class="co">#&gt; 5       5       1861-11-22      f    8</span></span>
+<span id="cb10-29"><a href="#cb10-29" tabindex="-1"></a><span class="co">#&gt; 6       6       1861-11-26      m   12</span></span>
+<span id="cb10-30"><a href="#cb10-30" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb10-31"><a href="#cb10-31" tabindex="-1"></a><span class="co">#&gt; // tags: id:case_ID, date_onset:date_of_prodrome, gender:gender, age:edad</span></span></code></pre></div>
 </div>
 </div>
 <div id="verbs-operating-on-groups" class="section level2">
@@ -788,11 +815,11 @@ a linelist will silently convert it back to a data.frame or tibble.</p>
 <h2>Verbs operating on data.frames</h2>
 <div id="dplyrbind_rows" class="section level3">
 <h3><code>dplyr::bind_rows()</code> ✅</h3>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a><span class="fu">dim</span>(x)</span>
-<span id="cb20-2"><a href="#cb20-2" tabindex="-1"></a><span class="co">#&gt; [1] 188  12</span></span></code></pre></div>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a></span>
-<span id="cb21-2"><a href="#cb21-2" tabindex="-1"></a><span class="fu">dim</span>(<span class="fu">bind_rows</span>(x, x))</span>
-<span id="cb21-3"><a href="#cb21-3" tabindex="-1"></a><span class="co">#&gt; [1] 376  12</span></span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="fu">dim</span>(x)</span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a><span class="co">#&gt; [1] 188  12</span></span>
+<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a><span class="fu">dim</span>(<span class="fu">bind_rows</span>(x, x))</span>
+<span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a><span class="co">#&gt; [1] 376  12</span></span></code></pre></div>
 </div>
 <div id="dplyrbind_cols" class="section level3">
 <h3><code>dplyr::bind_cols()</code> ✘</h3>
@@ -802,48 +829,48 @@ a linelist will silently convert it back to a data.frame or tibble.</p>
 <li>Warnings are produced about lost tagged, even for tags that are not
 actually lost</li>
 </ul>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a><span class="fu">bind_cols</span>(</span>
-<span id="cb22-2"><a href="#cb22-2" tabindex="-1"></a>  <span class="fu">suppressWarnings</span>(<span class="fu">select</span>(x, case_ID, date_of_prodrome)),</span>
-<span id="cb22-3"><a href="#cb22-3" tabindex="-1"></a>  <span class="fu">suppressWarnings</span>(<span class="fu">select</span>(x, age, gender))</span>
-<span id="cb22-4"><a href="#cb22-4" tabindex="-1"></a>) <span class="sc">%&gt;%</span></span>
-<span id="cb22-5"><a href="#cb22-5" tabindex="-1"></a>  <span class="fu">head</span>()</span>
-<span id="cb22-6"><a href="#cb22-6" tabindex="-1"></a><span class="co">#&gt; Warning: The following tags have lost their variable:</span></span>
-<span id="cb22-7"><a href="#cb22-7" tabindex="-1"></a><span class="co">#&gt;  id:case_ID, date_onset:date_of_prodrome</span></span>
-<span id="cb22-8"><a href="#cb22-8" tabindex="-1"></a><span class="co">#&gt; Warning: The following tags have lost their variable:</span></span>
-<span id="cb22-9"><a href="#cb22-9" tabindex="-1"></a><span class="co">#&gt;  gender:gender, age:age</span></span>
-<span id="cb22-10"><a href="#cb22-10" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb22-11"><a href="#cb22-11" tabindex="-1"></a><span class="co">#&gt; // linelist object</span></span>
-<span id="cb22-12"><a href="#cb22-12" tabindex="-1"></a><span class="co">#&gt;   case_ID date_of_prodrome age gender</span></span>
-<span id="cb22-13"><a href="#cb22-13" tabindex="-1"></a><span class="co">#&gt; 1       1       1861-11-21   7      f</span></span>
-<span id="cb22-14"><a href="#cb22-14" tabindex="-1"></a><span class="co">#&gt; 2       2       1861-11-23   6      f</span></span>
-<span id="cb22-15"><a href="#cb22-15" tabindex="-1"></a><span class="co">#&gt; 3       3       1861-11-28   4      f</span></span>
-<span id="cb22-16"><a href="#cb22-16" tabindex="-1"></a><span class="co">#&gt; 4       4       1861-11-27  13      m</span></span>
-<span id="cb22-17"><a href="#cb22-17" tabindex="-1"></a><span class="co">#&gt; 5       5       1861-11-22   8      f</span></span>
-<span id="cb22-18"><a href="#cb22-18" tabindex="-1"></a><span class="co">#&gt; 6       6       1861-11-26  12      m</span></span>
-<span id="cb22-19"><a href="#cb22-19" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb22-20"><a href="#cb22-20" tabindex="-1"></a><span class="co">#&gt; // tags: id:case_ID, date_onset:date_of_prodrome</span></span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="fu">bind_cols</span>(</span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a>  <span class="fu">suppressWarnings</span>(<span class="fu">select</span>(x, case_ID, date_of_prodrome)),</span>
+<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a>  <span class="fu">suppressWarnings</span>(<span class="fu">select</span>(x, age, gender))</span>
+<span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
+<span id="cb12-5"><a href="#cb12-5" tabindex="-1"></a>  <span class="fu">head</span>()</span>
+<span id="cb12-6"><a href="#cb12-6" tabindex="-1"></a><span class="co">#&gt; Warning: The following tags have lost their variable:</span></span>
+<span id="cb12-7"><a href="#cb12-7" tabindex="-1"></a><span class="co">#&gt;  id:case_ID, date_onset:date_of_prodrome</span></span>
+<span id="cb12-8"><a href="#cb12-8" tabindex="-1"></a><span class="co">#&gt; Warning: The following tags have lost their variable:</span></span>
+<span id="cb12-9"><a href="#cb12-9" tabindex="-1"></a><span class="co">#&gt;  gender:gender, age:age</span></span>
+<span id="cb12-10"><a href="#cb12-10" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb12-11"><a href="#cb12-11" tabindex="-1"></a><span class="co">#&gt; // linelist object</span></span>
+<span id="cb12-12"><a href="#cb12-12" tabindex="-1"></a><span class="co">#&gt;   case_ID date_of_prodrome age gender</span></span>
+<span id="cb12-13"><a href="#cb12-13" tabindex="-1"></a><span class="co">#&gt; 1       1       1861-11-21   7      f</span></span>
+<span id="cb12-14"><a href="#cb12-14" tabindex="-1"></a><span class="co">#&gt; 2       2       1861-11-23   6      f</span></span>
+<span id="cb12-15"><a href="#cb12-15" tabindex="-1"></a><span class="co">#&gt; 3       3       1861-11-28   4      f</span></span>
+<span id="cb12-16"><a href="#cb12-16" tabindex="-1"></a><span class="co">#&gt; 4       4       1861-11-27  13      m</span></span>
+<span id="cb12-17"><a href="#cb12-17" tabindex="-1"></a><span class="co">#&gt; 5       5       1861-11-22   8      f</span></span>
+<span id="cb12-18"><a href="#cb12-18" tabindex="-1"></a><span class="co">#&gt; 6       6       1861-11-26  12      m</span></span>
+<span id="cb12-19"><a href="#cb12-19" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb12-20"><a href="#cb12-20" tabindex="-1"></a><span class="co">#&gt; // tags: id:case_ID, date_onset:date_of_prodrome</span></span></code></pre></div>
 </div>
 <div id="joins" class="section level3">
 <h3>Joins ✘</h3>
 <p>Joins are currently not compatible with linelist as tags from the
 second element are silently dropped.</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a><span class="fu">full_join</span>(</span>
-<span id="cb23-2"><a href="#cb23-2" tabindex="-1"></a>  <span class="fu">suppressWarnings</span>(<span class="fu">select</span>(x, case_ID, date_of_prodrome)),</span>
-<span id="cb23-3"><a href="#cb23-3" tabindex="-1"></a>  <span class="fu">suppressWarnings</span>(<span class="fu">select</span>(x, case_ID, age, gender))</span>
-<span id="cb23-4"><a href="#cb23-4" tabindex="-1"></a>) <span class="sc">%&gt;%</span></span>
-<span id="cb23-5"><a href="#cb23-5" tabindex="-1"></a>  <span class="fu">head</span>()</span>
-<span id="cb23-6"><a href="#cb23-6" tabindex="-1"></a><span class="co">#&gt; Joining with `by = join_by(case_ID)`</span></span>
-<span id="cb23-7"><a href="#cb23-7" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb23-8"><a href="#cb23-8" tabindex="-1"></a><span class="co">#&gt; // linelist object</span></span>
-<span id="cb23-9"><a href="#cb23-9" tabindex="-1"></a><span class="co">#&gt;   case_ID date_of_prodrome age gender</span></span>
-<span id="cb23-10"><a href="#cb23-10" tabindex="-1"></a><span class="co">#&gt; 1       1       1861-11-21   7      f</span></span>
-<span id="cb23-11"><a href="#cb23-11" tabindex="-1"></a><span class="co">#&gt; 2       2       1861-11-23   6      f</span></span>
-<span id="cb23-12"><a href="#cb23-12" tabindex="-1"></a><span class="co">#&gt; 3       3       1861-11-28   4      f</span></span>
-<span id="cb23-13"><a href="#cb23-13" tabindex="-1"></a><span class="co">#&gt; 4       4       1861-11-27  13      m</span></span>
-<span id="cb23-14"><a href="#cb23-14" tabindex="-1"></a><span class="co">#&gt; 5       5       1861-11-22   8      f</span></span>
-<span id="cb23-15"><a href="#cb23-15" tabindex="-1"></a><span class="co">#&gt; 6       6       1861-11-26  12      m</span></span>
-<span id="cb23-16"><a href="#cb23-16" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb23-17"><a href="#cb23-17" tabindex="-1"></a><span class="co">#&gt; // tags: id:case_ID, date_onset:date_of_prodrome</span></span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="fu">full_join</span>(</span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a>  <span class="fu">suppressWarnings</span>(<span class="fu">select</span>(x, case_ID, date_of_prodrome)),</span>
+<span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a>  <span class="fu">suppressWarnings</span>(<span class="fu">select</span>(x, case_ID, age, gender))</span>
+<span id="cb13-4"><a href="#cb13-4" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
+<span id="cb13-5"><a href="#cb13-5" tabindex="-1"></a>  <span class="fu">head</span>()</span>
+<span id="cb13-6"><a href="#cb13-6" tabindex="-1"></a><span class="co">#&gt; Joining with `by = join_by(case_ID)`</span></span>
+<span id="cb13-7"><a href="#cb13-7" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb13-8"><a href="#cb13-8" tabindex="-1"></a><span class="co">#&gt; // linelist object</span></span>
+<span id="cb13-9"><a href="#cb13-9" tabindex="-1"></a><span class="co">#&gt;   case_ID date_of_prodrome age gender</span></span>
+<span id="cb13-10"><a href="#cb13-10" tabindex="-1"></a><span class="co">#&gt; 1       1       1861-11-21   7      f</span></span>
+<span id="cb13-11"><a href="#cb13-11" tabindex="-1"></a><span class="co">#&gt; 2       2       1861-11-23   6      f</span></span>
+<span id="cb13-12"><a href="#cb13-12" tabindex="-1"></a><span class="co">#&gt; 3       3       1861-11-28   4      f</span></span>
+<span id="cb13-13"><a href="#cb13-13" tabindex="-1"></a><span class="co">#&gt; 4       4       1861-11-27  13      m</span></span>
+<span id="cb13-14"><a href="#cb13-14" tabindex="-1"></a><span class="co">#&gt; 5       5       1861-11-22   8      f</span></span>
+<span id="cb13-15"><a href="#cb13-15" tabindex="-1"></a><span class="co">#&gt; 6       6       1861-11-26  12      m</span></span>
+<span id="cb13-16"><a href="#cb13-16" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb13-17"><a href="#cb13-17" tabindex="-1"></a><span class="co">#&gt; // tags: id:case_ID, date_onset:date_of_prodrome</span></span></code></pre></div>
 </div>
 </div>
 <div id="verbs-operating-on-multiple-columns" class="section level2">
@@ -852,27 +879,27 @@ second element are silently dropped.</p>
 <h3><code>dplyr::pick()</code> ✘</h3>
 <p><code>pick()</code> makes tidyselect functions work in usually
 tidyselect-incompatible functions, such as:</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a>x <span class="sc">%&gt;%</span></span>
-<span id="cb24-2"><a href="#cb24-2" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">arrange</span>(dplyr<span class="sc">::</span><span class="fu">pick</span>(<span class="fu">ends_with</span>(<span class="st">&quot;loc&quot;</span>))) <span class="sc">%&gt;%</span></span>
-<span id="cb24-3"><a href="#cb24-3" tabindex="-1"></a>  <span class="fu">head</span>()</span>
-<span id="cb24-4"><a href="#cb24-4" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb24-5"><a href="#cb24-5" tabindex="-1"></a><span class="co">#&gt; // linelist object</span></span>
-<span id="cb24-6"><a href="#cb24-6" tabindex="-1"></a><span class="co">#&gt;   case_ID infector date_of_prodrome date_of_rash date_of_death age gender</span></span>
-<span id="cb24-7"><a href="#cb24-7" tabindex="-1"></a><span class="co">#&gt; 1      26       45       1861-11-22   1861-11-27          &lt;NA&gt;   7      m</span></span>
-<span id="cb24-8"><a href="#cb24-8" tabindex="-1"></a><span class="co">#&gt; 2      28      180       1861-11-25   1861-11-30          &lt;NA&gt;  10      f</span></span>
-<span id="cb24-9"><a href="#cb24-9" tabindex="-1"></a><span class="co">#&gt; 3     146      172       1861-12-01   1861-12-07          &lt;NA&gt;   4      f</span></span>
-<span id="cb24-10"><a href="#cb24-10" tabindex="-1"></a><span class="co">#&gt; 4     147       18       1861-12-03   1861-12-07          &lt;NA&gt;   0      f</span></span>
-<span id="cb24-11"><a href="#cb24-11" tabindex="-1"></a><span class="co">#&gt; 5     176      146       1861-12-11   1861-12-15          &lt;NA&gt;   0   &lt;NA&gt;</span></span>
-<span id="cb24-12"><a href="#cb24-12" tabindex="-1"></a><span class="co">#&gt; 6     115       16       1861-12-01   1861-12-07          &lt;NA&gt;  11      f</span></span>
-<span id="cb24-13"><a href="#cb24-13" tabindex="-1"></a><span class="co">#&gt;   family_ID class complications x_loc y_loc</span></span>
-<span id="cb24-14"><a href="#cb24-14" tabindex="-1"></a><span class="co">#&gt; 1        67     1           yes   7.5  37.5</span></span>
-<span id="cb24-15"><a href="#cb24-15" tabindex="-1"></a><span class="co">#&gt; 2        65     2           yes  15.0  47.5</span></span>
-<span id="cb24-16"><a href="#cb24-16" tabindex="-1"></a><span class="co">#&gt; 3        13     0           yes  72.5 152.5</span></span>
-<span id="cb24-17"><a href="#cb24-17" tabindex="-1"></a><span class="co">#&gt; 4        13     0           yes  72.5 152.5</span></span>
-<span id="cb24-18"><a href="#cb24-18" tabindex="-1"></a><span class="co">#&gt; 5        64     0           yes  72.5 152.5</span></span>
-<span id="cb24-19"><a href="#cb24-19" tabindex="-1"></a><span class="co">#&gt; 6        66     2           yes  75.0  20.0</span></span>
-<span id="cb24-20"><a href="#cb24-20" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb24-21"><a href="#cb24-21" tabindex="-1"></a><span class="co">#&gt; // tags: id:case_ID, date_onset:date_of_prodrome, gender:gender, age:age</span></span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a>x <span class="sc">|&gt;</span></span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">arrange</span>(dplyr<span class="sc">::</span><span class="fu">pick</span>(<span class="fu">ends_with</span>(<span class="st">&quot;loc&quot;</span>))) <span class="sc">|&gt;</span></span>
+<span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a>  <span class="fu">head</span>()</span>
+<span id="cb14-4"><a href="#cb14-4" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb14-5"><a href="#cb14-5" tabindex="-1"></a><span class="co">#&gt; // linelist object</span></span>
+<span id="cb14-6"><a href="#cb14-6" tabindex="-1"></a><span class="co">#&gt;   case_ID infector date_of_prodrome date_of_rash date_of_death age gender</span></span>
+<span id="cb14-7"><a href="#cb14-7" tabindex="-1"></a><span class="co">#&gt; 1      26       45       1861-11-22   1861-11-27          &lt;NA&gt;   7      m</span></span>
+<span id="cb14-8"><a href="#cb14-8" tabindex="-1"></a><span class="co">#&gt; 2      28      180       1861-11-25   1861-11-30          &lt;NA&gt;  10      f</span></span>
+<span id="cb14-9"><a href="#cb14-9" tabindex="-1"></a><span class="co">#&gt; 3     146      172       1861-12-01   1861-12-07          &lt;NA&gt;   4      f</span></span>
+<span id="cb14-10"><a href="#cb14-10" tabindex="-1"></a><span class="co">#&gt; 4     147       18       1861-12-03   1861-12-07          &lt;NA&gt;   0      f</span></span>
+<span id="cb14-11"><a href="#cb14-11" tabindex="-1"></a><span class="co">#&gt; 5     176      146       1861-12-11   1861-12-15          &lt;NA&gt;   0   &lt;NA&gt;</span></span>
+<span id="cb14-12"><a href="#cb14-12" tabindex="-1"></a><span class="co">#&gt; 6     115       16       1861-12-01   1861-12-07          &lt;NA&gt;  11      f</span></span>
+<span id="cb14-13"><a href="#cb14-13" tabindex="-1"></a><span class="co">#&gt;   family_ID class complications x_loc y_loc</span></span>
+<span id="cb14-14"><a href="#cb14-14" tabindex="-1"></a><span class="co">#&gt; 1        67     1           yes   7.5  37.5</span></span>
+<span id="cb14-15"><a href="#cb14-15" tabindex="-1"></a><span class="co">#&gt; 2        65     2           yes  15.0  47.5</span></span>
+<span id="cb14-16"><a href="#cb14-16" tabindex="-1"></a><span class="co">#&gt; 3        13     0           yes  72.5 152.5</span></span>
+<span id="cb14-17"><a href="#cb14-17" tabindex="-1"></a><span class="co">#&gt; 4        13     0           yes  72.5 152.5</span></span>
+<span id="cb14-18"><a href="#cb14-18" tabindex="-1"></a><span class="co">#&gt; 5        64     0           yes  72.5 152.5</span></span>
+<span id="cb14-19"><a href="#cb14-19" tabindex="-1"></a><span class="co">#&gt; 6        66     2           yes  75.0  20.0</span></span>
+<span id="cb14-20"><a href="#cb14-20" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb14-21"><a href="#cb14-21" tabindex="-1"></a><span class="co">#&gt; // tags: id:case_ID, date_onset:date_of_prodrome, gender:gender, age:age</span></span></code></pre></div>
 <p>As such, we could expect it to work with linelist custom
 tidyselect-like function: <code>has_tag()</code> but it’s not the case
 since <code>pick()</code> currently strips out all attributes, including
